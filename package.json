@@ -13,7 +13,8 @@
     "gh-deploy:first": "chmod +x $npm_package_config_deploy_script && $npm_package_config_deploy_script -s",
     "gh-deploy": "$npm_package_config_deploy_script",
     "html": "cp $npm_package_config_src/*.html $npm_package_config_dist",
-    "build": "mkdir $npm_package_config_dist && npm run html",
+    "clean": "rm -rf $npm_package_config_dist && mkdir $npm_package_config_dist",
+    "build": "npm run clean && npm run html && npm run cname",
     "cname": "echo $npm_package_config_domain > $npm_package_config_dist/CNAME"
   },
   "repository": {
