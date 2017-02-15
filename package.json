@@ -13,8 +13,12 @@
     "gh-deploy:first": "chmod +x $npm_package_config_deploy_script && $npm_package_config_deploy_script -s",
     "gh-deploy": "$npm_package_config_deploy_script",
     "html": "cp $npm_package_config_src/*.html $npm_package_config_dist",
+    "sass": "node-sass -w --source-map-embed $npm_package_config_src/styles/main.scss $npm_package_config_src/styles/main.css",
+    "css": "mkdir $npm_package_config_dist/styles && mv $npm_package_config_src/styles/main.css $npm_package_config_dist/styles",
     "clean": "rm -rf $npm_package_config_dist && mkdir $npm_package_config_dist",
-    "build": "npm run clean && npm run html && npm run cname",
+    "build": "npm run clean && npm run html && npm run css && npm run cname",
+    "server": "browser-sync start --server --files $npm_package_config_src/styles/*.css",
+    "start": "npm run sass & npm run server",
     "cname": "echo $npm_package_config_domain > $npm_package_config_dist/CNAME"
   },
   "repository": {
@@ -26,5 +30,9 @@
   "bugs": {
     "url": "https://github.com/krulik/yoavsaban.com/issues"
   },
-  "homepage": "https://github.com/krulik/yoavsaban.com#readme"
+  "homepage": "https://github.com/krulik/yoavsaban.com#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "node-sass": "^4.5.0"
+  }
 }

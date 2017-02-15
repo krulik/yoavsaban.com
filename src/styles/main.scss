@@ -1,0 +1,10 @@
+$c-foo: red;
+
+body {
+  background-color: $c-foo;
+  font-family: sans-serif;
+}
+
+html {
+  font-size: 200%;
+}
