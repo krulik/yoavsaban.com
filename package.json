@@ -14,7 +14,7 @@
     "gh-deploy": "$npm_package_config_deploy_script",
     "html": "cp $npm_package_config_src/*.html $npm_package_config_dist",
     "sass": "node-sass -w --source-map-embed $npm_package_config_src/styles/main.scss $npm_package_config_src/styles/main.css",
-    "css": "mkdir $npm_package_config_dist/styles && mv $npm_package_config_src/styles/main.css $npm_package_config_dist/styles",
+    "css": "mkdir $npm_package_config_dist/styles && cp $npm_package_config_src/styles/main.css $npm_package_config_dist/styles",
     "clean": "rm -rf $npm_package_config_dist && mkdir $npm_package_config_dist",
     "build": "npm run clean && npm run html && npm run css && npm run cname",
     "server": "browser-sync start --server --files $npm_package_config_src/styles/*.css",
