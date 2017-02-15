@@ -1,0 +1,27 @@
+{
+  "name": "yoavsaban.com",
+  "version": "0.0.0",
+  "description": "",
+  "config": {
+    "domain": "www.yoavsaban.com",
+    "port": 9000,
+    "src": "src",
+    "dist": "dist",
+    "deploy_script": "scripts/gh-dir-deploy.sh"
+  },
+  "scripts": {
+    "gh-deploy:first": "chmod +x $npm_package_config_deploy_script && $npm_package_config_deploy_script -s",
+    "gh-deploy": "$npm_package_config_deploy_script",
+    "cname": "echo $npm_package_config_domain > $npm_package_config_dist/CNAME"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krulik/yoavsaban.com.git"
+  },
+  "author": "Serge Krul",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/krulik/yoavsaban.com/issues"
+  },
+  "homepage": "https://github.com/krulik/yoavsaban.com#readme"
+}
