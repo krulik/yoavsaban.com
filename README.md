@@ -17,6 +17,15 @@ npm run build
 npm run gh-deploy
 ```
 
+## Audit
+
+Runs Lighthouse.
+TODO Tenon for Accessibility.
+
+```
+npm test
+```
+
 ## Tools
 
 - [Critical](https://github.com/addyosmani/critical)
