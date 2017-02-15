@@ -1,0 +1,20 @@
+{
+  "name": "yoavsaban.com",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Serge Krul"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/krulik/yoavsaban.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize-css": "^5.0.0"
+  }
+}
