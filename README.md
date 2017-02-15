@@ -10,7 +10,7 @@ npm install
 npm start
 ```
 
-## Setup
+## Deploy
 
 ```
 npm run build
@@ -19,8 +19,8 @@ npm run gh-deploy
 
 ## Audit
 
-Runs Lighthouse.
-TODO Tenon for Accessibility.
+- Runs Lighthouse.
+- TODO Tenon for Accessibility.
 
 ```
 npm test
