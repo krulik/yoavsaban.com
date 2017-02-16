@@ -1,0 +1,21 @@
+[data-ui-component="Hero"] {
+  background-image: url(../images/hero.png);
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+[data-ui-component="Hero"]:before {
+  $image-height: 234px;
+  content: "";
+  display: block;
+  height: $image-height;
+}
+
+[data-ui-component="Hero"].Section {
+  padding: 0;
+}
+
+[data-ui-component="Hero-title"] {
+  margin: 0;
+  padding: 0.5em 0;
+}

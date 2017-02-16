@@ -1,73 +1,8 @@
 @import "variables";
+@import "type";
+@import "page";
+@import "section";
+@import "hero";
+@import "list";
+@import "icons";
 @import "utils";
-
-html.Type {
-  font-family: 'Alef', sans-serif;
-  font-weight: 400;
-  font-size: 1em;
-}
-
-.Type--lg {
-  font-weight: 700;
-  font-size: 1.25rem;
-}
-
-.Type--md {
-  font-weight: 700;
-  font-size: 1rem;
-}
-
-.Type--space {
-  line-height: 1.3;
-}
-
-[class*="Type"]:first-child {
-  margin-top: 0;
-}
-
-.Page {
-  background-color: $c-dark;
-  color: $c-white;
-}
-
-.Section {
-  padding: $space;
-}
-
-.Section--blue {
-  background-color: $c-blue;
-}
-
-.Section--green {
-  background-color: $c-green;
-}
-
-.Section--red {
-  background-color: $c-red;
-}
-
-.Section--yellow {
-  background-color: $c-yellow;
-}
-
-[data-ui-component="Hero"] {
-  background-image: url(../images/hero.png);
-  background-repeat: no-repeat;
-  background-position: center top;
-}
-
-[data-ui-component="Hero"]:before {
-  $image-height: 234px;
-  content: "";
-  display: block;
-  height: $image-height;
-}
-
-[data-ui-component="Hero"].Section {
-  padding: 0;
-}
-
-[data-ui-component="Hero-title"] {
-  margin: 0;
-  padding: 0.5em 0;
-}
