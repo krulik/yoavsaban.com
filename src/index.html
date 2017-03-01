@@ -36,28 +36,58 @@
       ויש כל-כך הרבה רגעים. בכל אירוע, לא משנה אם זאת חתונה, מסיבה או יומולדת... בכל פעם יוצאים מחדש להרפתקה צבעונית ביחד.
     </p>
   </section>
-  <section class="Section Section--green" data-ui-component="People">
-    <h2 class="Type--md Type--bold">רקדו אצלי</h2>
+  <section class="Section Section--green Section--noSpace" aria-labelledby="id-People-title" data-ui-component="People">
+    <div class="Carousel" data-ui-component="Highlights">
+      <h2 class="Carousel-title Type--md Type--bold" id="id-People-title">רקדו אצלי</h2>
+      <div class="Carousel-frame js-swipe">
+        <ul class="Carousel-list u-resetList">
+          <li class="Carousel-slide Carousel-slide--image">
+            <img src="http://www.fillmurray.com/300/200" alt="Bill Murray">
+            <p>
+              ויש כל-כך הרבה רגעים. בכל אירוע, לא משנה אם זאת חתונה, מסיבה או יומולדת... בכל פעם יוצאים מחדש להרפתקה צבעונית ביחד.
+            </p>
+          </li>
+          <li class="Carousel-slide Carousel-slide--image">
+            <img src="https://www.placecage.com/300/200" alt="Nicolas Cage">
+            <p>
+              ויש כל-כך הרבה רגעים. בכל אירוע, לא משנה אם זאת חתונה, מסיבה או יומולדת... בכל פעם יוצאים מחדש להרפתקה צבעונית ביחד.
+            </p>
+          </li>
+        </ul>
+      </div>
+      <button class="Carousel-next js-swipe-next u-resetButton u-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 501.5 501.5"><g><path d="M199.33 410.622l-55.77-55.508L247.425 250.75 143.56 146.384l55.77-55.507L358.44 250.75z"/></g></svg>
+      </button>
+      <button class="Carousel-prev js-swipe-prev u-resetButton u-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 501.5 501.5"><g><path d="M302.67 90.877l55.77 55.508L254.575 250.75 358.44 355.116l-55.77 55.506L143.56 250.75z"/></g></svg>
+      </button>
+    </div>
   </section>
   <section class="Section Section--yellow" data-ui-component="Contact">
     <h2 class="Type--md Type--bold">דברו איתי :)</h2>
-    <ul class="List List--horizontal" data-ui-component="Contact-list">
+    <ul class="List List--horizontal u-resetList" data-ui-component="Contact-list">
       <li class="List-item">
         <a class="Icon" data-ui-component="Contact-phone" href="tel:+972525015992">
           <span class="Icon-text Type--bold">בטלפון</span>
+          <span class="Icon-text">052-5015992</span>
         </a>
       </li>
       <li class="List-item">
         <a class="Icon" data-ui-component="Contact-email" href="mailto:ymsaban@gmail.com">
           <span class="Icon-text Type--bold">במייל</span>
+          <span class="Icon-text">ymsaban@gmail.com</span>
         </a>
       </li>
       <li class="List-item">
         <a class="Icon" data-ui-component="Contact-fb" href="https://www.facebook.com/yoav.saban">
           <span class="Icon-text Type--bold">בפייס</span>
+          <span class="Icon-text">yoav.saban</span>
         </a>
       </li>
     </ul>
   </section>
+
+  <script src="bower_components/swipe-js/swipe.js"></script>
+  <script src="scripts/main.js"></script>
 </body>
 </html>

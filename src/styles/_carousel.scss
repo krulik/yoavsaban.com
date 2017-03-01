@@ -1,0 +1,72 @@
+.Carousel {
+  position: relative;
+}
+
+.Carousel-frame {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+}
+
+.Carousel-list {
+  overflow: hidden;
+  position: relative;
+}
+
+.Carousel-list > * {
+  float: left;
+  width: 100%;
+  position: relative;
+}
+
+.Carousel-prev,
+.Carousel-next path {
+  fill: $c-white;
+}
+
+.Carousel-prev,
+.Carousel-next {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  outline: 0;
+}
+
+.Carousel-next {
+  right: 0;
+}
+
+.Carousel-prev {
+  left: 0;
+}
+
+.Carousel-title {
+  background-color: rgba($c-black, 0.5);
+  margin: 0;
+  position: absolute;
+  top: 0; right: 0;
+  z-index: 1;
+  width: 100%;
+  padding: $space;
+  box-sizing: border-box;
+}
+
+.Carousel-slide--image img {
+  width: 100%;
+  display: block;
+}
+
+.Carousel-slide--image p {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: $space;
+  box-sizing: border-box;
+  background-color: rgba($c-black, 0.2);
+  margin: 0;
+}
+
+.js-swipe .Carousel-slide--image p {
+  direction: rtl;
+}
