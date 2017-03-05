@@ -9,36 +9,45 @@
   <link rel="stylesheet" href="styles/main.css">
 </head>
 <body class="Page u-textJustify">
-  <section class="Section Section--green u-textCenter" data-ui-component="Hero">
-    <h1 class="Type--lg Type--bold" data-ui-component="Hero-title">Dj יואב סבן</h1>
+  <section class="Section Section--noSpace u-textCenter" data-ui-component="Hero">
+    <h1 class="Type--lg Type--bold Section--green" data-ui-component="Hero-title">Dj יואב סבן</h1>
   </section>
-  <section class="Section Section--blue Type--space" data-ui-component="Me">
-    <h2 class="Type--md Type--bold">אני</h2>
-    <p>
-      מאז שאני זוכר את עצמי אני חווה את העולם דרך המוזיקה, אמא שלי מספרת שכבר בלול הייתי מנענע חיתולים :)
-    </p>
-    <p>
-      ככה אני, אני ממש אוהב מוזיקה. תמיד אהבתי. ועם הזמן אני מרגיש שהעניין והתשוקה שלי רק הולכים וגדלים. יש המון (המון!) מוזיקה מעולה בעולם, ואני כל הזמן ממשיך ללקט אלי מכל הטוב הזה. בעיני מוזיקה טובה היא חיבור בין חומרים שמצלצלים מוכר לבין טיונים וקצבים חדשים שיחד לוקחים להרפתקה בגוף ובנשמה.
-    </p>
-  </section>
-  <section aria-label="מיקסים" class="Section Section--noSpace" data-ui-component="Music">
-    <iframe width="100%" height="60" src="https://www.mixcloud.com/widget/iframe/?feed=https%3A%2F%2Fwww.mixcloud.com%2Fyoavsaban%2Fbeit-galeria-261-haifa%2F&hide_cover=1&mini=1" frameborder="0"></iframe>
-    <iframe width="100%" height="60" src="https://www.mixcloud.com/widget/iframe/?feed=https%3A%2F%2Fwww.mixcloud.com%2Fyoavsaban%2Fcelebrating-the-new-year-lights%2F&hide_cover=1&mini=1" frameborder="0"></iframe>
-    <iframe width="100%" height="60" src="https://www.mixcloud.com/widget/iframe/?feed=https%3A%2F%2Fwww.mixcloud.com%2Fyoavsaban%2Fthe-winter-is-coming-transit-1012-ein-hod%2F&hide_cover=1&mini=1" frameborder="0"></iframe>
-    <iframe width="100%" height="60" src="https://www.mixcloud.com/widget/iframe/?feed=https%3A%2F%2Fwww.mixcloud.com%2Fyoavsaban%2Fwarming-sesi%25C3%25B3n-ein-hod-transit-party-2910%2F&hide_cover=1&mini=1" frameborder="0"></iframe>
-  </section>
-  <section class="Section Section--red Type--space" data-ui-component="Music">
-    <h2 class="Type--md Type--bold">מוזיקה</h2>
-    <p>
-      אני מכיר ומאמין ביכולת של המוזיקה ליצור את הקסם הזה בלב, שאי אפשר לתאר באמת במילים. מבחינתי התקלוט הוא מפגש אנושי פותח, שמאפשר כל פעם מחדש להזכר בכוחות האדירים של השמחה והחיים. אני מקשיב לאנשים שזזים על הרחבה (וגם לאלה שלא...), "פותח אנטנות" ומניח את הקטע שמתאים בדיוק לרגע. אינספור פעמים חוויתי איך מוזיקה יכולה ליצור את האווירה המדוייקת, לערסל וללטף את האוזן ורגע אחרי להעיף את כולם לחלל...
-    </p>
-    <p>
-      ויש כל-כך הרבה רגעים. בכל אירוע, לא משנה אם זאת חתונה, מסיבה או יומולדת... בכל פעם יוצאים מחדש להרפתקה צבעונית ביחד.
-    </p>
-  </section>
+  <main>
+    <section class="Section Section--blue Type--space" data-ui-component="Me">
+      <h2 class="Type--md Type--bold">אני</h2>
+      <p>
+        מאז שאני זוכר את עצמי אני חווה את העולם דרך המוזיקה, אמא שלי מספרת שכבר בלול הייתי מנענע חיתולים :)
+      </p>
+      <p>
+        ככה אני, אני ממש אוהב מוזיקה. תמיד אהבתי. ועם הזמן אני מרגיש שהעניין והתשוקה שלי רק הולכים וגדלים. יש המון (המון!) מוזיקה מעולה בעולם, ואני כל הזמן ממשיך ללקט אלי מכל הטוב הזה. בעיני מוזיקה טובה היא חיבור בין חומרים שמצלצלים מוכר לבין טיונים וקצבים חדשים שיחד לוקחים להרפתקה בגוף ובנשמה.
+      </p>
+      <div data-ui-component="Yoav" aria-hidden="true">
+        <img data-ui-component="Yoav-decor" src="images/cactus.png" alt="">
+        <img data-ui-component="Yoav-image" src="images/yoav.png" alt="">
+        <img data-ui-component="Yoav-decor" src="images/cactus.png" alt="">
+      </div>
+    </section>
+    <div data-ui-component="Music">
+      <section aria-label="מיקסים" class="Section Section--noSpace" data-ui-component="Music-mix">
+        <iframe width="100%" height="60" src="https://www.mixcloud.com/widget/iframe/?feed=https%3A%2F%2Fwww.mixcloud.com%2Fyoavsaban%2Fbeit-galeria-261-haifa%2F&hide_cover=1&mini=1" frameborder="0"></iframe>
+        <iframe width="100%" height="60" src="https://www.mixcloud.com/widget/iframe/?feed=https%3A%2F%2Fwww.mixcloud.com%2Fyoavsaban%2Fcelebrating-the-new-year-lights%2F&hide_cover=1&mini=1" frameborder="0"></iframe>
+        <iframe width="100%" height="60" src="https://www.mixcloud.com/widget/iframe/?feed=https%3A%2F%2Fwww.mixcloud.com%2Fyoavsaban%2Fthe-winter-is-coming-transit-1012-ein-hod%2F&hide_cover=1&mini=1" frameborder="0"></iframe>
+        <iframe width="100%" height="60" src="https://www.mixcloud.com/widget/iframe/?feed=https%3A%2F%2Fwww.mixcloud.com%2Fyoavsaban%2Fwarming-sesi%25C3%25B3n-ein-hod-transit-party-2910%2F&hide_cover=1&mini=1" frameborder="0"></iframe>
+      </section>
+      <section class="Section Section--red Type--space" data-ui-component="Music-about">
+        <h2 class="Type--md Type--bold">מוזיקה</h2>
+        <p>
+          אני מכיר ומאמין ביכולת של המוזיקה ליצור את הקסם הזה בלב, שאי אפשר לתאר באמת במילים. מבחינתי התקלוט הוא מפגש אנושי פותח, שמאפשר כל פעם מחדש להזכר בכוחות האדירים של השמחה והחיים. אני מקשיב לאנשים שזזים על הרחבה (וגם לאלה שלא...), "פותח אנטנות" ומניח את הקטע שמתאים בדיוק לרגע. אינספור פעמים חוויתי איך מוזיקה יכולה ליצור את האווירה המדוייקת, לערסל וללטף את האוזן ורגע אחרי להעיף את כולם לחלל...
+        </p>
+        <p>
+          ויש כל-כך הרבה רגעים. בכל אירוע, לא משנה אם זאת חתונה, מסיבה או יומולדת... בכל פעם יוצאים מחדש להרפתקה צבעונית ביחד.
+        </p>
+      </section>
+    </div>
+  </main>
   <section class="Section Section--green Section--noSpace" aria-labelledby="id-People-title" data-ui-component="People">
     <div class="Carousel" data-ui-component="Highlights">
-      <h2 class="Carousel-title Type--md Type--bold" id="id-People-title">רקדו אצלי</h2>
+      <h2 class="Carousel-title Type--md Type--bold" id="id-People-title">המלצות</h2>
       <div class="Carousel-frame js-swipe">
         <ul class="Carousel-list u-resetList">
           <li class="Carousel-slide Carousel-slide--image">
@@ -56,7 +65,7 @@
         </ul>
       </div>
       <button class="Carousel-next js-swipe-next u-resetButton u-pointer">
-        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 501.5 501.5"><g><path d="M199.33 410.622l-55.77-55.508L247.425 250.75 143.56 146.384l55.77-55.507L358.44 250.75z"/></g></svg>
+        <svg class="Carousel-next-front" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 501.5 501.5"><g><path d="M199.33 410.622l-55.77-55.508L247.425 250.75 143.56 146.384l55.77-55.507L358.44 250.75z"/></g></svg>
       </button>
       <button class="Carousel-prev js-swipe-prev u-resetButton u-pointer">
         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 501.5 501.5"><g><path d="M302.67 90.877l55.77 55.508L254.575 250.75 358.44 355.116l-55.77 55.506L143.56 250.75z"/></g></svg>
@@ -69,19 +78,19 @@
       <li class="List-item">
         <a class="Icon" data-ui-component="Contact-phone" href="tel:+972525015992">
           <span class="Icon-text Type--bold">בטלפון</span>
-          <span class="Icon-text">052-5015992</span>
+          <span class="Icon-text u-visibleMd">052-5015992</span>
         </a>
       </li>
       <li class="List-item">
         <a class="Icon" data-ui-component="Contact-email" href="mailto:ymsaban@gmail.com">
           <span class="Icon-text Type--bold">במייל</span>
-          <span class="Icon-text">ymsaban@gmail.com</span>
+          <span class="Icon-text u-visibleMd">ymsaban@gmail.com</span>
         </a>
       </li>
       <li class="List-item">
         <a class="Icon" data-ui-component="Contact-fb" href="https://www.facebook.com/yoav.saban">
           <span class="Icon-text Type--bold">בפייס</span>
-          <span class="Icon-text">yoav.saban</span>
+          <span class="Icon-text u-visibleMd">yoav.saban</span>
         </a>
       </li>
     </ul>

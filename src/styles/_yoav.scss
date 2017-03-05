@@ -1,0 +1,11 @@
+[data-ui-component="Yoav"] {
+  text-align: center;
+}
+
+[data-ui-component="Yoav"] > * {
+  vertical-align: middle;
+}
+
+[data-ui-component="Yoav-image"] {
+  margin: 0 $space;
+}

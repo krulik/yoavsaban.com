@@ -5,14 +5,10 @@
 }
 
 [data-ui-component="Hero"]:before {
-  $image-height: 234px;
+  $image-height: 124px;
   content: "";
   display: block;
   height: $image-height;
-}
-
-[data-ui-component="Hero"].Section {
-  padding: 0;
 }
 
 [data-ui-component="Hero-title"] {

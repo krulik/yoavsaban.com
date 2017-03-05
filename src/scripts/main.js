@@ -3,7 +3,7 @@ carousel.setAttribute('dir', 'ltr');
 var mySwipe = new Swipe(carousel, {
   startSlide: 0,
   speed: 400,
-  auto: 3000,
+  auto: false,
   draggable: true,
   continuous: true,
   disableScroll: false,

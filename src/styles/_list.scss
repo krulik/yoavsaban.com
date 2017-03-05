@@ -1,13 +1,22 @@
 .List--horizontal {
-  text-align: justify;
-}
-
-.List--horizontal:after {
-  content: "";
-  width: 100%;
-  display: inline-block;
+  text-align: center;
 }
 
 .List--horizontal .List-item {
   display: inline-block;
+  margin: 0 $space/3;
+  @media (min-width: $bp-md) {
+    margin: 0 $space;
+  }
+  @media (min-width: $bp-lg) {
+    margin: 0 $space*2;
+  }
+}
+
+.List--horizontal .List-item:first-child {
+  margin-right: 0;
+}
+
+.List--horizontal .List-item:last-child {
+  margin-left: 0;
 }

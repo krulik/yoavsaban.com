@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.u-textRight {
+  text-align: right;
+}
+
 .u-textJustify {
   text-align: justify;
 }
@@ -27,4 +31,12 @@
 
 .u-fill {
   width: 100%;
+}
+
+.u-visibleMd {
+  display: none; // TODO Accesibility
+
+  @media (min-width: $bp-md) {
+    display: block;
+  }
 }
