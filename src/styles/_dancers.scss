@@ -1,0 +1,36 @@
+ul.Dancers-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.Dancers-list blockquote {
+  margin: 0;
+}
+
+.Dancers-list cite {
+  font-style: normal;
+  font-weight: bold;
+}
+.Dancers-list cite:after {
+  content: ":";
+}
+
+.Dancers-list p {
+  margin: 0;
+  display: inline;
+}
+.Dancers-list p:before,
+.Dancers-list p:after {
+  content: "\""
+}
+
+.Dancers-list img {
+  border-radius: 50%;
+  margin-left: 1em;
+}
+
+.Dancers-list li {
+  display: flex;
+  margin-bottom: 1em;
+}

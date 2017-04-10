@@ -1,0 +1,33 @@
+.Contact ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.Contact li {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+@media (min-width: $bp-sm) {
+  .Contact ul {
+    display: flex;
+    justify-content: center;
+  }
+
+  .Contact li {
+    margin: 0 1em;
+  }
+}
+
+.Contact-phone .Icon:before {
+  background-image: url(../images/icon-phone.png);
+}
+
+.Contact-email .Icon:before {
+  background-image: url(../images/icon-email.png);
+}
+
+.Contact-fb .Icon:before {
+  background-image: url(../images/icon-fb.png);
+}

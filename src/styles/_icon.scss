@@ -1,0 +1,23 @@
+.Icon {
+  display: inline-block;
+  text-align: center;
+}
+
+.Icon:before {
+  $w: 80px;
+  $h: 80px;
+  content: "";
+  display: inline-block;
+  width: $w;
+  height: $h;
+  background-repeat: no-repeat;
+}
+
+.Icon-text {
+  display: block;
+}
+
+a.Icon, a.Icon-text {
+  color: inherit;
+  text-decoration: none;
+}

@@ -1,0 +1,17 @@
+[data-ui-component="Hero"] {
+  background-image: url(../images/hero.png);
+  background-repeat: repeat-x;
+  background-position: center top;
+}
+
+[data-ui-component="Hero"]:before {
+  $image-height: 124px;
+  content: "";
+  display: block;
+  height: $image-height;
+}
+
+[data-ui-component="Hero-title"] {
+  margin: 0;
+  padding: 0.5em 0;
+}

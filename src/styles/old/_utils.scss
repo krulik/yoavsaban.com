@@ -1,0 +1,42 @@
+.u-textCenter {
+  text-align: center;
+}
+
+.u-textRight {
+  text-align: right;
+}
+
+.u-textJustify {
+  text-align: justify;
+}
+
+.u-resetList {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.u-resetButton {
+  box-sizing: content-box;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.u-pointer {
+  cursor: pointer;
+}
+
+.u-fill {
+  width: 100%;
+}
+
+.u-visibleMd {
+  display: none; // TODO Accesibility
+
+  @media (min-width: $bp-md) {
+    display: block;
+  }
+}

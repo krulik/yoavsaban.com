@@ -1,23 +1,17 @@
-.Section {
-  padding: $space;
+section {
+  padding: 1em;
 }
 
-.Section--noSpace {
-  padding: 0;
+@media (min-width: $bp-md) {
+  section {
+    padding: 2em;
+    margin: 2em;
+  }
 }
 
-.Section--blue {
-  background-color: $c-blue;
-}
-
-.Section--green {
-  background-color: $c-green;
-}
-
-.Section--red {
-  background-color: $c-red;
-}
-
-.Section--yellow {
-  background-color: $c-yellow;
+@media (min-width: $bp-lg) {
+  section {
+    margin: 2em auto;
+    max-width: 800px;
+  }
 }

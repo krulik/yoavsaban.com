@@ -1,0 +1,46 @@
+.Music-mix ul,
+ul.Music-mix {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.Music-mix iframe {
+  width: 100%;
+  display: block;
+}
+
+.Music-mix--mobile {
+  padding: 0;
+}
+
+.Music-mix--desktop {
+  display: none;
+}
+
+@media (min-width: $bp-md) {
+  .Music-mix--mobile {
+    display: none;
+  }
+  .Music-mix--desktop {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .Music-mix--desktop li {
+    width: 50%;
+    padding-top: 50%;
+    position: relative;
+    box-sizing: border-box;
+    border-bottom: 1em solid transparent;
+  }
+  .Music-mix--desktop li:nth-child(2n-1) {
+    border-right: 1em solid transparent;
+  }
+  .Music-mix--desktop iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
+}

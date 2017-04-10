@@ -1,0 +1,16 @@
+body { color: white; }
+.MainNav { background-color: $c-green; }
+.About { background-color: $c-blue; }
+.Music { background-color: $c-orange; }
+.Gallery { background-color: $c-black; }
+.Dancers { background-color: $c-green; }
+.Contact { background-color: $c-yellow; }
+
+@media (min-width: $bp-md) {
+  $opacity: 0.9;
+  .About { background-color: rgba($c-blue, $opacity); }
+  .Music { background-color: rgba($c-orange, $opacity); }
+  .Gallery { background-color: rgba($c-black, $opacity); }
+  .Dancers { background-color: rgba($c-green, $opacity); }
+  .Contant { background-color: rgba($c-yellow, $opacity); }
+}
