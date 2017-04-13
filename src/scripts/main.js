@@ -3,6 +3,14 @@
 
 'use strict';
 
+// TODO
+// Gallery hide on scroll
+// Gallery hide on mobile tap
+// Gallery swipe
+// Nav close timing
+// ScrollTo offset on mobile
+// Heading hidden on mobile
+
 // var carousel = document.querySelector('.js-swipe');
 // carousel.setAttribute('dir', 'ltr');
 // var mySwipe = new Swipe(carousel, {
@@ -23,53 +31,34 @@
 // prev.addEventListener('click', mySwipe.prev);
 // next.addEventListener('click', mySwipe.next);
 
-
-const nav = document.querySelector('.MainNav');
-const element = document.querySelector('.Hero-element');
-const hero = document.querySelector('.Hero');
-
-const headroom = new Headroom(nav);
-headroom.init();
-
-const navLinks = nav.querySelectorAll('.MainNav-list a');
-for (const navLink of navLinks) {
-  navLink.addEventListener('click', e => {
+// Scroll
+// --------------------------------------------------------------
+const scrollToLinks = document.querySelectorAll('.js-scrollTo');
+for (const scrollToLink of scrollToLinks) {
+  scrollToLink.addEventListener('click', e => {
     e.preventDefault();
-    const selector = e.target.getAttribute('href');
-    scrollToTarget(document.querySelector(selector));
-    requestAnimationFrame(() => {
-      document.location.hash = selector;
-    });
+    const scrollTo = e.currentTarget.getAttribute('href');
+    const selector = `[name=${scrollTo.replace('#', '')}]`;
+    const target = document.querySelector(selector);
+    scrollToTarget(target)
+      .then(() => {
+        requestAnimationFrame(() => {
+          document.location.hash = scrollTo;
+        });
+      });
   });
 }
-window.addEventListener('scroll', e => {
-  requestAnimationFrame(() => {
-    const percent = window.scrollY / document.documentElement.clientHeight;
-    Velocity(hero, {
-      blur: percent*10
-    }, {
-      duration: 0,
-      delay: 0
-    });
-    Velocity(element, {
-      top: `-${percent*1000}px`,
-      blur: percent*0.5
-    }, {
-      duration: 0,
-      delay: 0
-    });
-  });
-});
 
 function scrollToTarget(target) {
-  Velocity(target, 'scroll', {
+  return Velocity(target, 'scroll', {
     duration: 600,
     delay: 0,
-    easing: 'ease',
-    offset: -125
+    easing: 'ease'
   });
 }
 
+// Gallery
+// --------------------------------------------------------------
 document.addEventListener('click', hide);
 document.addEventListener('keyup', e => {
 	if (e.key === 'Escape') hide(e);

@@ -17,7 +17,6 @@
   "dependencies": {
     "normalize-css": "^5.0.0",
     "swipe-js": "^2.2.4",
-    "velocity": "^1.5.0",
-    "headroom.js": "https://unpkg.com/headroom.js/bower.zip"
+    "velocity": "^1.5.0"
   }
 }

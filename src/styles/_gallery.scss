@@ -6,13 +6,12 @@ ul.Gallery-list {
 .Gallery-list {
   display: flex;
   flex-wrap: wrap;
-  max-width: 800px;
   justify-content: center;
   margin: 0 auto;
 }
 
 .Gallery-list li {
-  margin: 2%;
+  margin: 0.5em;
   flex-grow: 1;
 	flex-basis: 80px;
 }

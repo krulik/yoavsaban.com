@@ -14,4 +14,7 @@ section {
     margin: 2em auto;
     max-width: 800px;
   }
+  section:first-child {
+    margin-top: 0;
+  }
 }

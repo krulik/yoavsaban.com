@@ -4,7 +4,6 @@
   top: 0;
   right: 0;
   left: 0;
-  z-index: 1;
 }
 
 ul.MainNav-list {
@@ -46,11 +45,11 @@ ul.MainNav-list {
 }
 
 @media (min-width: $bp-md) {
-  .MainNav.headroom {
+  .MainNav.headroom .MainNav-list li a {
     transition: all .5s ease;
   }
-  .MainNav.headroom--unpinned {
-    padding: 0em;
+  .MainNav.headroom--unpinned .MainNav-list li a {
+    font-size: 95%;
   }
   .MainNav-toggle {
     display: none;
@@ -75,6 +74,6 @@ ul.MainNav-list {
     color: #333;
   }
   .MainNav-list li a {
-    padding: 1em;
+    padding: 0 1em;
   }
 }

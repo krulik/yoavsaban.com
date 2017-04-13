@@ -12,27 +12,28 @@
 
 <body class="u-textJustify">
   <nav class="MainNav">
-    <a href="#id-nav" class="MainNav-toggle" aria-label="לפתוח תפריט">
+    <a href="#nav" class="MainNav-toggle" aria-label="לפתוח תפריט">
       <img src="images/hamburger.png" alt="">
     </a>
-    <ul id="id-nav" class="MainNav-list">
-      <li><a href="#id-about">אני</a></li>
-      <li><a href="#id-music">מוזיקה</a></li>
-      <li><a href="#id-gallery">החתונות שלי</a></li>
-      <li><a href="#id-dancers">המליצו עלי</a></li>
-      <li><a href="">צרו קשר</a></li>
+    <ul id="nav" class="MainNav-list">
+      <li><a href="#about" class="js-scrollTo">אני</a></li>
+      <li><a href="#music" class="js-scrollTo">מוזיקה</a></li>
+      <li><a href="#gallery" class="js-scrollTo">החתונות שלי</a></li>
+      <li><a href="#dancers" class="js-scrollTo">המליצו עלי</a></li>
+      <li><a href="#contact" class="js-scrollTo">צרו קשר</a></li>
     </ul>
   </nav>
-  <div class="Hero">
+  <a href="#about" class="js-scrollTo"><div class="Hero">
     <img src="images/logo.png" alt="" class="Hero-element">
-  </div>
-  <h1 class="Hero-title Type--bold">Dj יואב סבן</h1>
+    <h1 class="Hero-title Type--bold">Dj יואב סבן</h1>
+  </div></a>
   <main>
-    <section class="About" id="id-about">
+    <a class="u-anchor" name="about"></a>
+    <section class="About">
       <h2 class="Type--md">אני</h2>
       <p>מאז שאני זוכר את עצמי אני חווה את העולם דרך המוזיקה, אמא שלי מספרת שכבר בלול הייתי מנענע חיתולים :)</p>
       <p>ככה אני, אני ממש אוהב מוזיקה. תמיד אהבתי. ועם הזמן אני מרגיש שהעניין והתשוקה שלי רק הולכים וגדלים. יש המון (המון!) מוזיקה מעולה בעולם, ואני כל הזמן ממשיך ללקט אלי מכל הטוב הזה. בעיני מוזיקה טובה היא חיבור בין חומרים שמצלצלים מוכר לבין טיונים וקצבים חדשים שיחד לוקחים להרפתקה בגוף ובנשמה.</p>
-    <p class="u-textCenter">
+      <p class="u-textCenter">
         <img class="u-vAlignMiddle" src="images/cactus.png" alt="">
         <img class="About-image u-vAlignMiddle" src="images/yoav.png" alt="">
         <img class="u-vAlignMiddle" src="images/cactus.png" alt="">
@@ -58,7 +59,8 @@
         </li>
       </ul>
     </section>
-    <section class="Music" id="id-music">
+    <a class="u-anchor" name="music"></a>
+    <section class="Music">
       <h2 class="Type--md">מוזיקה</h2>
       <p>אני מכיר ומאמין ביכולת של המוזיקה ליצור את הקסם הזה בלב, שאי אפשר לתאר באמת במילים. מבחינתי התקלוט הוא מפגש אנושי פותח, שמאפשר כל פעם מחדש להזכר בכוחות האדירים של השמחה והחיים. אני מקשיב לאנשים שזזים על הרחבה (וגם לאלה שלא...), "פותח אנטנות" ומניח את הקטע שמתאים בדיוק לרגע. אינספור פעמים חוויתי איך מוזיקה יכולה ליצור את האווירה המדוייקת, לערסל וללטף את האוזן ורגע אחרי להעיף את כולם לחלל... </p>
       <p>ויש כל-כך הרבה רגעים. בכל אירוע, לא משנה אם זאת חתונה, מסיבה או יומולדת... </p>
@@ -82,7 +84,8 @@
         </li>
       </ul>
     </section>
-    <section id="id-gallery" class="Gallery">
+    <a class="u-anchor" name="gallery"></a>
+    <section class="Gallery">
       <h2 class="Type--md">החתונות שלי</h2>
       <ul class="Gallery-list">
         <li>
@@ -129,7 +132,8 @@
         <div id="img-10" class="Gallery-overlay"><img src="http://lorempixel.com/1280/768/people/10/" alt="" /></div>
       </div>
     </section>
-    <section id="id-dancers" class="Dancers">
+    <a class="u-anchor" name="dancers"></a>
+    <section class="Dancers">
       <h2 class="Type--md">המליצו עלי</h2>
       <ul class="Dancers-list">
         <li>
@@ -155,6 +159,7 @@
         </li>
       </ul>
     </section>
+    <a class="u-anchor" name="contact"></a>
     <section class="Contact">
       <h2 class="Type--md">דברו איתי :)</h2>
       <ul>

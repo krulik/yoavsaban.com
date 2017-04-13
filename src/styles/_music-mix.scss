@@ -25,6 +25,7 @@ ul.Music-mix {
   .Music-mix--desktop {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row-reverse;
   }
 
   .Music-mix--desktop li {
@@ -34,7 +35,7 @@ ul.Music-mix {
     box-sizing: border-box;
     border-bottom: 1em solid transparent;
   }
-  .Music-mix--desktop li:nth-child(2n-1) {
+  .Music-mix--desktop li:nth-child(2n+1) {
     border-right: 1em solid transparent;
   }
   .Music-mix--desktop iframe {

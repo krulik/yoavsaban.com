@@ -1,13 +1,18 @@
 html, body {
   height: 100%;
 }
+
+main {
+  position: relative;
+}
+
 body:before {
   content: "";
   display: block;
   height: 100%;
   position: relative;
-  z-index: -1;
 }
+
 .Hero {
   background-image: url(../images/hero.jpg);
   background-repeat: no-repeat;
@@ -17,8 +22,6 @@ body:before {
   height: 100%;
   position: fixed;
   top: 0; left: 0;
-  z-index: -1;
-  will-change: background-position-y;
 }
 
 .Hero-element {
@@ -36,15 +39,12 @@ body:before {
   left: 50%;
   font-size: 1.5rem;
   transform: translate(-50%, -0.25em);
-  will-change: margin-top;
-  z-index: 2;
 }
 
 @media (min-width: $bp-md) {
   .Hero-title {
     margin: 0;
     top: 50%;
-    z-index: -1;
     transform: translate(-50%, -50%);
     margin-top: 110px;
   }
