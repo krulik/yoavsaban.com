@@ -6,6 +6,10 @@ body { color: white; }
 .Dancers { background-color: $c-green; }
 .Contact { background-color: $c-yellow; }
 
+.MainNav {
+  box-shadow: 0 0 2px $c-dark;
+}
+
 .MainNav-list {
   background-color: $c-dark;
   color: $c-whiteish;

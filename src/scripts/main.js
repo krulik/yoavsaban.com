@@ -4,11 +4,35 @@
 'use strict';
 
 // TODO
-// Gallery hide on scroll
-// Gallery hide on mobile tap
-// Gallery swipe
-// Nav close timing
+// --------------------------------------------------------------
+// Links active state flash
+// Vector images
+// Hero image jump on scroll
 
+// Gallery
+// - hide on scroll
+// - hide on mobile tap
+// - swipe
+// - image loading
+
+// Dancers
+// - Mask images
+// - Image top align to text
+
+// Menu
+// - Height should be like mix cloud
+// - Black border like mix cloud
+// - Nav close timing
+// - Horizontal padding like section
+// - Vertical padding like section
+
+
+// Contact
+// - More space below title
+// - Less space between icon labels
+
+// Swipe
+// --------------------------------------------------------------
 // var carousel = document.querySelector('.js-swipe');
 // carousel.setAttribute('dir', 'ltr');
 // var mySwipe = new Swipe(carousel, {
