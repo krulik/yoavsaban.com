@@ -8,8 +8,6 @@
 // Gallery hide on mobile tap
 // Gallery swipe
 // Nav close timing
-// ScrollTo offset on mobile
-// Heading hidden on mobile
 
 // var carousel = document.querySelector('.js-swipe');
 // carousel.setAttribute('dir', 'ltr');

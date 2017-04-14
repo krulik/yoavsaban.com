@@ -14,14 +14,7 @@ ul.Music-mix {
   padding: 0;
 }
 
-.Music-mix--desktop {
-  display: none;
-}
-
 @media (min-width: $bp-md) {
-  .Music-mix--mobile {
-    display: none;
-  }
   .Music-mix--desktop {
     display: flex;
     flex-wrap: wrap;

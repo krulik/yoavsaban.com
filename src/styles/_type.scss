@@ -17,6 +17,6 @@ html.Type {
   font-size: 1rem;
 }
 
-[class*="Type"]:first-child {
+section [class*="Type"]:first-child {
   margin-top: 0;
 }

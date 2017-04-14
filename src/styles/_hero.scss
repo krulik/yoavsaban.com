@@ -33,19 +33,19 @@ body:before {
 }
 
 .Hero-title {
-  text-align: center;
+  $h-element: 133px;
+
+  font-size: 1.25rem;
   position: fixed;
   top: 0;
   left: 50%;
-  font-size: 1.5rem;
-  transform: translate(-50%, -0.25em);
-}
+  transform: translate(-50%, -50%);
+  margin: 0;
+  margin-top: 1.5em;
 
-@media (min-width: $bp-md) {
-  .Hero-title {
-    margin: 0;
+  @media (min-width: $bp-md) {
+    font-size: 1.5rem;
     top: 50%;
-    transform: translate(-50%, -50%);
-    margin-top: 110px;
+    margin-top: $h-element / 2 + 32px;
   }
 }

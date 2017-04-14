@@ -16,18 +16,13 @@ ul.MainNav-list {
 
 .MainNav-list {
   position: absolute;
-  background-color: #e0e0e0;
-  color: #333;
-  left: 3em;
+  left: 1.5em;
   top: 2em;
 }
 
 .MainNav-list li a {
   display: block;
   padding: 1.5em 3em;
-}
-.MainNav-list li:hover {
-  background-color: white;
 }
 
 .MainNav-list {
@@ -42,18 +37,15 @@ ul.MainNav-list {
 
 .MainNav-toggle {
   float: left;
+  position: relative;
+  left: -1.5em;
+}
+
+.MainNav-toggle img {
+  vertical-align: middle;
 }
 
 @media (min-width: $bp-md) {
-  .MainNav.headroom .MainNav-list li a {
-    transition: all .5s ease;
-  }
-  .MainNav.headroom--unpinned .MainNav-list li a {
-    font-size: 95%;
-  }
-  .MainNav-toggle {
-    display: none;
-  }
   .MainNav-list {
     transform: none;
     transition: none;

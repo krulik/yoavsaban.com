@@ -6,6 +6,19 @@ body { color: white; }
 .Dancers { background-color: $c-green; }
 .Contact { background-color: $c-yellow; }
 
+.MainNav-list {
+  background-color: $c-dark;
+  color: $c-whiteish;
+}
+
+.MainNav-list li:hover {
+  background-color: $c-black;
+}
+
+.Gallery-overlay {
+  background-color: rgba($c-black, 0.8);
+}
+
 @media (min-width: $bp-md) {
   $opacity: 0.9;
   .About { background-color: rgba($c-blue, $opacity); }
