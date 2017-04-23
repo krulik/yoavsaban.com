@@ -16,12 +16,17 @@ ul.Dancers-list {
   content: ":";
 }
 
+.Dancers-list p:not(:last-child):after {
+  content: "";
+  display: block;
+  margin: 1em 0;
+}
+.Dancers-list div,
 .Dancers-list p {
-  margin: 0;
   display: inline;
 }
-.Dancers-list p:before,
-.Dancers-list p:after {
+.Dancers-list div:before,
+.Dancers-list div:after {
   content: "\""
 }
 
