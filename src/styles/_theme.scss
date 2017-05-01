@@ -31,3 +31,8 @@ body { color: white; }
 .Gallery-overlay {
   background-color: rgba($c-black, 0.8);
 }
+
+@media (max-height: $bp-short) {
+  $opacity: 0.5;
+  .MainNav { background-color: rgba($c-green, $opacity); }
+}

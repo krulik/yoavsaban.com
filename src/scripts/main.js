@@ -33,19 +33,19 @@
 
 // Swipe
 // --------------------------------------------------------------
-// var carousel = document.querySelector('.js-swipe');
-// carousel.setAttribute('dir', 'ltr');
-// var mySwipe = new Swipe(carousel, {
-//   startSlide: 0,
-//   speed: 400,
-//   auto: false,
-//   draggable: true,
-//   continuous: true,
-//   disableScroll: false,
-//   stopPropagation: false,
-//   callback: function (index, elem, dir) { },
-//   transitionEnd: function (index, elem) { }
-// });
+const carousel = document.querySelector('.js-swipe');
+carousel.setAttribute('dir', 'ltr');
+const mySwipe = new Swipe(carousel, {
+  startSlide: 0,
+  speed: 400,
+  auto: false,
+  draggable: true,
+  continuous: true,
+  disableScroll: false,
+  stopPropagation: false,
+  callback: function (index, elem, dir) { },
+  transitionEnd: function (index, elem) { }
+});
 
 // var prev = document.querySelector('.js-swipe-prev');
 // var next = document.querySelector('.js-swipe-next');
@@ -81,25 +81,26 @@ function scrollToTarget(target) {
 
 // Gallery
 // --------------------------------------------------------------
-document.addEventListener('click', hide);
-document.addEventListener('keyup', e => {
-	if (e.key === 'Escape') hide(e);
-	if (isImageOpen() && e.key.startsWith('Arrow')) {
-		const num = document.location.hash.replace('#img-', '');
-		const func = e.key.endsWith('Right') ? add : e.key.endsWith('Left') ? substract : noop;
-		document.location.hash = document.location.hash.replace(num, func(Number(num), 1));
-	}
-});
+// document.addEventListener('click', hide);
+// document.addEventListener('keyup', e => {
+// 	if (e.key === 'Escape') hide(e);
+// 	if (isImageOpen() && e.key.startsWith('Arrow')) {
+// 		const num = document.location.hash.replace('#img-', '');
+// 		const func = e.key.endsWith('Right') ? add : e.key.endsWith('Left') ? substract : noop;
+// 		document.location.hash = document.location.hash.replace(num, func(Number(num), 1));
+// 	}
+// });
 
-function hide(e) {
-	if (isImageOpen() && isClickedOutside(e)) {
-		requestAnimationFrame(() => document.location.hash = '#id-gallery');
-	}
-}
+// function hide(e) {
+// 	if (isImageOpen() && isClickedOutside(e)) {
+// 		requestAnimationFrame(() => document.location.hash = '#id-gallery');
+// 	}
+// }
 
-function noop() {}
-function add(a, b) { return a + b; }
-function substract(a, b) { return a - b; }
-function isImageOpen() { return document.location.hash.startsWith('#img-'); }
-function isClickedOutside(e) { return !isImage(e.target); }
-function isImage(element) { return element.tagName ==='IMG' && element.closest('[id^=img-]') !== null; }
+// function noop() {}
+// function add(a, b) { return a + b; }
+// function substract(a, b) { return a - b; }
+// function isImageOpen() { return document.location.hash.startsWith('#img-'); }
+// function isClickedOutside(e) { return !isImage(e.target) && !isImageControl(e.target); }
+// function isImageControl(element) { return element.closest('svg') !== null || element.classList.contains('Gallery-next') || element.classList.contains('Gallery-prev'); }
+// function isImage(element) { return element.tagName ==='IMG' && element.closest('[id^=img-]') !== null; }

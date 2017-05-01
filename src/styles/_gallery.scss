@@ -35,7 +35,7 @@ ul.Gallery-list {
 	z-index: auto;
 }
 
-.Gallery-preload img {
+.Gallery-preload .Gallery-large {
 	position: absolute;
 	transform: scale(0);
 	top: 0; left: 0;
@@ -45,6 +45,37 @@ ul.Gallery-list {
 	max-width: 100%;
 }
 
-.Gallery-overlay:target img {
+.Gallery-overlay:target .Gallery-large {
 	transform: scale(1);
+}
+
+
+.Gallery-overlay {
+  .Gallery-next,
+  .Gallery-prev {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 60px;
+    transition: background-color .5s ease;
+
+    &:hover {
+      background-color: rgba(black, 0.5);
+    }
+
+    svg {
+      fill: white;
+      position: absolute;
+      top: 0; bottom: 0;
+      margin: auto;
+    }
+  }
+
+  .Gallery-next {
+    right: 0;
+  }
+
+  .Gallery-prev {
+    left: 0;
+  }
+
 }

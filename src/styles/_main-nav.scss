@@ -23,6 +23,10 @@ ul.MainNav-list {
 .MainNav-list li a {
   display: block;
   padding: 1.5em 3em;
+
+  @media (max-height: $bp-short) {
+    padding: 1em 2em;
+  }
 }
 
 .MainNav-list {

@@ -39,3 +39,11 @@ ul.Dancers-list {
   display: flex;
   margin-bottom: 1em;
 }
+
+.Dancers-list [id*="dancers-"] {
+  display: none;
+}
+
+.Dancers-list [id*="dancers-"]:target {
+  display: block;
+}
