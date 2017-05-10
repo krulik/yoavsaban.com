@@ -1,19 +1,10 @@
 body { color: white; }
 .MainNav { background-color: $c-green; }
-.About { background-color: $c-blue; }
-.Music { background-color: $c-orange; }
-.Gallery { background-color: $c-black; }
-.Dancers { background-color: $c-green; }
-.Contact { background-color: $c-yellow; }
-
-@media (min-width: $bp-md) {
-  $opacity: 0.9;
-  .About { background-color: rgba($c-blue, $opacity); }
-  .Music { background-color: rgba($c-orange, $opacity); }
-  .Gallery { background-color: rgba($c-black, $opacity); }
-  .Dancers { background-color: rgba($c-green, $opacity); }
-  .Contant { background-color: rgba($c-yellow, $opacity); }
-}
+.About { background-color: rgba($c-blue, $o-sections); }
+.Music { background-color: rgba($c-orange, $o-sections); }
+.Gallery { background-color: rgba($c-black, $o-sections); }
+.Dancers { background-color: rgba($c-green, $o-sections); }
+.Contant { background-color: rgba($c-yellow, $o-sections); }
 
 .MainNav {
   box-shadow: 0 0 2px 0 $c-dark;
@@ -29,10 +20,5 @@ body { color: white; }
 }
 
 .Gallery-overlay {
-  background-color: rgba($c-black, 0.8);
-}
-
-@media (max-height: $bp-short) {
-  $opacity: 0.5;
-  .MainNav { background-color: rgba($c-green, $opacity); }
+  background-color: rgba($c-black, $o-gallery);
 }

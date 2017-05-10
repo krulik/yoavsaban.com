@@ -38,11 +38,16 @@ ul.Gallery-list {
 .Gallery-preload .Gallery-large {
 	position: absolute;
 	transform: scale(0);
-	top: 0; left: 0;
-	bottom: 0; right: 0;
+	top: $h-nav-short;
+  left: 0; bottom: 0; right: 0;
 	margin: auto;
 	transition: transform .5s ease;
 	max-width: 100%;
+  max-height: calc(100% - #{$h-nav-short});
+  @media (min-width: $bp-nav) {
+    top: $h-nav-high;
+    max-height: calc(100% - #{$h-nav-high});
+  }
 }
 
 .Gallery-overlay:target .Gallery-large {
