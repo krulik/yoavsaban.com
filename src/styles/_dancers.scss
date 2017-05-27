@@ -25,14 +25,25 @@ ul.Dancers-list {
 .Dancers-list p {
   display: inline;
 }
-.Dancers-list div:before,
-.Dancers-list div:after {
+.Dancers-list div:not(.Dancers-more):before {
   content: "\""
+}
+.Dancers-list div:not(.Dancers-more):after {
+  content: "..."
+}
+
+.Dancers-more:after {
+  content: "\""
+}
+
+.Dancers-more + a {
+  text-decoration: underline;
 }
 
 .Dancers-list img {
   border-radius: 50%;
   margin-left: 1em;
+  margin-top: 0.5em;
 }
 
 .Dancers-list li {

@@ -11,13 +11,11 @@
 
 // Gallery
 // - hide on scroll
-// - hide on mobile tap
 // - swipe
 // - image loading
 
 // Dancers
 // - Mask images
-// - Image top align to text
 
 // Menu
 // - Height should be like mix cloud
@@ -33,19 +31,19 @@
 
 // Swipe
 // --------------------------------------------------------------
-const carousel = document.querySelector('.js-swipe');
-carousel.setAttribute('dir', 'ltr');
-const mySwipe = new Swipe(carousel, {
-  startSlide: 0,
-  speed: 400,
-  auto: false,
-  draggable: true,
-  continuous: true,
-  disableScroll: false,
-  stopPropagation: false,
-  callback: function (index, elem, dir) { },
-  transitionEnd: function (index, elem) { }
-});
+// const carousel = document.querySelector('.js-swipe');
+// carousel.setAttribute('dir', 'ltr');
+// const mySwipe = new Swipe(carousel, {
+//   startSlide: 0,
+//   speed: 400,
+//   auto: false,
+//   draggable: true,
+//   continuous: true,
+//   disableScroll: false,
+//   stopPropagation: false,
+//   callback: function (index, elem, dir) { },
+//   transitionEnd: function (index, elem) { }
+// });
 
 // var prev = document.querySelector('.js-swipe-prev');
 // var next = document.querySelector('.js-swipe-next');
@@ -79,8 +77,44 @@ function scrollToTarget(target) {
   });
 }
 
+// Dancers
+// --------------------------------------------------------------
+forEach(document.querySelectorAll('.js-more'), more => {
+  hideEl(more);
+  var moreTrigger = document.createElement('a');
+  moreTrigger.href = '';
+  moreTrigger.textContent = more.getAttribute('aria-label');
+  more.insertAdjacentElement('afterend', moreTrigger);
+  moreTrigger.addEventListener('click', e => {
+    e.preventDefault();
+    showEl(more);
+    hideEl(moreTrigger);
+  });
+});
+
+function forEach(arrayLike, fn) {
+  return [].forEach.call(arrayLike, fn);
+}
+
+function hideEl(el) {
+  el.setAttribute('hidden', 'hidden');
+}
+
+function showEl(el) {
+  el.removeAttribute('hidden');
+}
+
+// Mix
+// --------------------------------------------------------------
+forEach(document.querySelectorAll('.js-lazy-mix'), loadLazyMix);
+
+function loadLazyMix(el) {
+  el.innerHTML = `<iframe src="${el.dataset.src}" height="${el.dataset.height}" frameborder="0"></iframe>`;
+}
+
 // Gallery
 // --------------------------------------------------------------
+forEach(document.querySelectorAll('.js-lazy-image'), loadLazyImage);
 document.addEventListener('click', hide);
 document.addEventListener('keyup', e => {
 	if (e.key === 'Escape') hide(e);
@@ -90,6 +124,17 @@ document.addEventListener('keyup', e => {
 		document.location.hash = document.location.hash.replace(num, func(Number(num), 1));
 	}
 });
+
+function loadLazyImage(el) {
+  var src = el.dataset.src;
+  var img = document.createElement('img');
+  img.addEventListener('load', e => {
+    el.insertAdjacentElement('afterend', img);
+    el.parentNode.removeChild(el);
+  });
+  img.src = src;
+  img.className = el.className;
+}
 
 function hide(e) {
 	if (isImageOpen() && isClickedOutside(e)) {
@@ -101,6 +146,11 @@ function noop() {}
 function add(a, b) { return a + b; }
 function substract(a, b) { return a - b; }
 function isImageOpen() { return document.location.hash.startsWith('#img-'); }
-function isClickedOutside(e) { return !isImage(e.target) && !isImageControl(e.target); }
+function isClickedOutside(e) {
+  return !isImage(e.target) && !isImageControl(e.target);
+}
+function isClickedImage(e) {
+  return isImage(e.target);
+}
 function isImageControl(element) { return element.closest('svg') !== null || element.classList.contains('Gallery-next') || element.classList.contains('Gallery-prev'); }
 function isImage(element) { return element.tagName ==='IMG' && element.closest('[id^=img-]') !== null; }
