@@ -31,8 +31,8 @@ function processImages(images) {
   images = images.map(mapCloudinary);
   fs.readFile(templateUrl, 'utf8', (err, indexContent) => {
     let html = '';
-    html = indexContent.replace('{{thumbs}}', reduceImages(images, renderThumb));
-    html = html.replace('{{large}}', reduceImages(images, renderLarge));
+    html = indexContent.replace('{{thumbs}}', images.map(renderThumb).join(''));
+    html = html.replace('{{large}}', images.map(renderLarge).join(''));
 
     fs.writeFile(indexUrl, html, (err) => {
       if (err) {
@@ -46,14 +46,6 @@ function processImages(images) {
 
 function mapCloudinary(cloudinaryImage) {
   return cloudinaryImage.public_id;
-}
-
-function reduceImages(images, renderer) {
-  return images
-    .map(renderer)
-    .reduce((html, renderedHtml) => {
-      return (html += renderedHtml);
-    }, '');
 }
 
 function renderThumb(imageUrl, index) {
@@ -87,8 +79,7 @@ function getJSON(options) {
         return reject(response);
       }
       try {
-        let json = JSON.parse(body);
-        resolve(json);
+        resolve(JSON.parse(body));
       } catch (e) {
         reject(e);
       }
