@@ -19,13 +19,13 @@
     "css": "mkdir $npm_package_config_dist/styles && cp $npm_package_config_src/styles/main.css $npm_package_config_dist/styles",
     "bower": "cp -R $npm_package_config_src/bower_components $npm_package_config_dist",
     "clean": "rm -rf $npm_package_config_dist && mkdir $npm_package_config_dist",
-    "build": "npm run clean && npm run bower && npm run img && npm run scripts && npm run images && npm run html && npm run css && npm run cname",
+    "build": "npm run clean && npm run bower && npm run img && npm run scripts && npm run template && npm run html && npm run css && npm run cname",
     "server": "browser-sync start --server --files $npm_package_config_src/styles/*.css $npm_package_config_src/*.html",
     "start": "npm run sass & npm run server",
     "lighthouse": "lighthouse http://localhost:3000/src/",
     "test": "npm run lighthouse",
     "cname": "echo $npm_package_config_domain > $npm_package_config_dist/CNAME",
-    "images": "node scripts/images.js"
+    "template": "node scripts/template.js"
   },
   "repository": {
     "type": "git",

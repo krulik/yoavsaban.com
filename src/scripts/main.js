@@ -82,6 +82,7 @@ function scrollToTarget(target) {
 forEach(document.querySelectorAll('.js-more'), more => {
   hideEl(more);
   var moreTrigger = document.createElement('a');
+  moreTrigger.classList.add('Dancers-more-trigger');
   moreTrigger.href = '';
   moreTrigger.textContent = more.getAttribute('aria-label');
   more.insertAdjacentElement('afterend', moreTrigger);

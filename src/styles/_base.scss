@@ -8,6 +8,7 @@ a {
   text-decoration: none;
 }
 
-[hidden] {
+[hidden],
+[aria-hidden=true] {
   display: none !important;
 }

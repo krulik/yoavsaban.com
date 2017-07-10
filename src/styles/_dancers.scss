@@ -25,15 +25,9 @@ ul.Dancers-list {
 .Dancers-list p {
   display: inline;
 }
-.Dancers-list div:not(.Dancers-more):before {
-  content: "\""
-}
-.Dancers-list div:not(.Dancers-more):after {
-  content: "..."
-}
 
-.Dancers-more:after {
-  content: "\""
+.Dancers-more-trigger:after {
+  content: "..."
 }
 
 .Dancers-more + a {
