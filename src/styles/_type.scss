@@ -17,6 +17,10 @@ html.Type {
   font-size: 1rem;
 }
 
+.Type--sm {
+  font-size: 0.8rem;
+}
+
 section [class*="Type"]:first-child {
   margin-top: 0;
 }

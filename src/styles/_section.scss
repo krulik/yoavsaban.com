@@ -1,20 +1,30 @@
-section {
+.Section {
   padding: 1.5em;
 }
 
+.Section--condensed {
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+}
+
 @media (min-width: $bp-md) {
-  section {
+  .Section {
     padding: 2em;
     margin: 2em;
+  }
+
+  .Section--condensed {
+    padding-top: 0.5em;
+  padding-bottom: 0.5em;
   }
 }
 
 @media (min-width: $bp-lg) {
-  section {
+  .Section {
     margin: 2em auto;
     max-width: 800px;
   }
-  section:first-child {
+  .Section:first-child {
     margin-top: 0;
   }
 }

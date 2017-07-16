@@ -58,7 +58,7 @@
 // https://developers.google.com/analytics/devguides/collection/analyticsjs/screens
 // https://developers.google.com/analytics/devguides/collection/analyticsjs/events
 
-// Scroll
+// Scrol`
 // --------------------------------------------------------------
 const scrollToLinks = document.querySelectorAll('.js-scrollTo');
 for (const scrollToLink of scrollToLinks) {
