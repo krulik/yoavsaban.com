@@ -51,6 +51,13 @@
 // prev.addEventListener('click', mySwipe.prev);
 // next.addEventListener('click', mySwipe.next);
 
+// Analytics
+// --------------------------------------------------------------
+// https://developers.google.com/analytics/devguides/collection/analyticsjs/user-timings
+// https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications
+// https://developers.google.com/analytics/devguides/collection/analyticsjs/screens
+// https://developers.google.com/analytics/devguides/collection/analyticsjs/events
+
 // Scroll
 // --------------------------------------------------------------
 const scrollToLinks = document.querySelectorAll('.js-scrollTo');
