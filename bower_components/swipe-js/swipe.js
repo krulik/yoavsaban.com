@@ -1,5 +1,5 @@
 /*!
- * Swipe 2.2.10
+ * Swipe 2.2.4
  *
  * Brad Birdsall
  * Copyright 2013, MIT License
@@ -50,8 +50,6 @@
     // setup auto slideshow
     var delay = options.auto || 0;
     var interval;
-
-    var disabled = false;
 
     // utilities
     // simple no operation function
@@ -119,8 +117,6 @@
     var events = {
 
       handleEvent: function(event) {
-        if (disabled) return;
-
         switch (event.type) {
           case 'mousedown':
           case 'touchstart': this.start(event); break;
@@ -351,7 +347,7 @@
     setup();
 
     // start auto slideshow if applicable
-    begin();
+    if (delay) begin();
 
     // Expose the Swipe API
     return {
@@ -384,12 +380,6 @@
 
       // return current index position
       getPos: getPos,
-
-      // disable slideshow
-      disable: disable,
-
-      // enable slideshow
-      enable: enable,
 
       // return total number of slides
       getNumSlides: function() { return length; },
@@ -444,27 +434,10 @@
       }
     }
 
-    // clone nodes when there is only two slides
-    function cloneNode(el) {
-      var clone = el.cloneNode(true);
-      element.appendChild(clone);
-
-      // tag these slides as clones (to remove them on kill)
-      clone.setAttribute('data-cloned', true);
-
-      // Remove id from element
-      clone.removeAttribute('id');
-    }
-
     function setup() {
       // cache slides
       slides = element.children;
       length = slides.length;
-
-      // slides length correction, minus cloned slides
-      for (var i = 0; i < slides.length; i++) {
-        if (slides[i].getAttribute('data-cloned')) length--;
-      }
 
       // set continuous to false if only one slide
       if (slides.length < 2) {
@@ -473,8 +446,14 @@
 
       // special case if two slides
       if (browser.transitions && options.continuous && slides.length < 3) {
-        cloneNode(slides[0]);
-        cloneNode(slides[1]);
+        var clone0 = slides[0].cloneNode(true);
+        var clone1 = element.children[1].cloneNode(true);
+        element.appendChild(clone0);
+        element.appendChild(clone1);
+
+        // tag these slides as clones (to remove them on kill)
+        clone0.setAttribute('data-cloned', true);
+        clone1.setAttribute('data-cloned', true);
 
         slides = element.children;
       }
@@ -519,17 +498,15 @@
     }
 
     function prev() {
-      if (disabled) return;
-
       if (options.continuous) {
         slide(index-1);
-      } else if (index) {
+      }
+      else if (index) {
         slide(index-1);
       }
     }
 
     function next() {
-      if (disabled) return;
 
       if (options.continuous) {
         slide(index+1);
@@ -678,8 +655,7 @@
     }
 
     function begin() {
-      delay = options.auto || 0;
-      if (delay) interval = setTimeout(next, delay);
+      interval = setTimeout(next, delay);
     }
 
     function stop() {
@@ -689,17 +665,8 @@
 
     function restart() {
       stop();
+      delay = options.auto || 0;
       begin();
-    }
-
-    function disable() {
-      stop();
-      disabled = true;
-    }
-
-    function enable() {
-      disabled = false;
-      restart();
     }
 
     function isMouseEvent(e) {

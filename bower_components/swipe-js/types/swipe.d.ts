@@ -1,7 +1,8 @@
-// Type definitions for Swipe v2.2.10
+// Type definitions for Swipe v2.2.3
 // Project: https://github.com/lyfeyaj/swipe
 // Definitions by: Felix Liu <https://github.com/lyfeyaj>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
+
 
 interface SwipeOptions {
     startSlide?: number;
@@ -27,6 +28,4 @@ declare class Swipe {
     stop(): void;
     setup(): void;
     kill(): void;
-    disable(): void;
-    enable(): void;
 }

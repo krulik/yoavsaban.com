@@ -6,13 +6,9 @@ import 'swipejs/style.css';
 import './style.css';
 
 class ReactSwipeExampleApp extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor(...args) {
+    super(...args);
     this.state = {};
-
-    this.handleClick = this.handleClick.bind(this);
-    this.handleCallback = this.handleCallback.bind(this);
-    this.onTransactionEnd = this.onTransactionEnd.bind(this);
   }
 
   onTransactionEnd(index, elem) {
@@ -41,18 +37,18 @@ class ReactSwipeExampleApp extends React.Component {
                autoRestart={false}
                disableScroll={false}
                stopPropagation={false}
-               callback={this.handleCallback}
-               transitionEnd={this.onTransactionEnd}>
+               callback={this.handleCallback.bind(this)}
+               transitionEnd={this.onTransactionEnd.bind(this)}>
           <SwipeItem className='custom-swipe-item-class'
-                     onClick={this.handleClick}>
+                     onClick={this.handleClick.bind(this)}>
             Slide One
           </SwipeItem>
           <SwipeItem className='custom-swipe-item-class'
-                     onClick={this.handleClick}>
+                     onClick={this.handleClick.bind(this)}>
             Slide Two
           </SwipeItem>
           <SwipeItem className='custom-swipe-item-class'
-                     onClick={this.handleClick}>
+                     onClick={this.handleClick.bind(this)}>
             Slide Three
           </SwipeItem>
         </Swipe>
