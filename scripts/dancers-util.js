@@ -23,7 +23,7 @@ function renderDancer(dancer) {
 function renderMoreBlock(more) {
   return more.length ? `
     <div class="Dancers-more js-more" aria-label="עוד"><!--
-      ${renderMore(dancer.more)}
+      ${renderMore(more)}
     --></div>
   ` : '';
 }
