@@ -82,7 +82,7 @@ if [ $setup ]; then
 	git --work-tree "$deploy_directory" rm -r "*"
 	git --work-tree "$deploy_directory" add --all
 	git --work-tree "$deploy_directory" commit -m "initial publish"$'\n\n'"generated from commit $commit_hash"
-	git push $repo $deploy_branch
+	git push -f $repo $deploy_branch
 	restore_head
 	exit
 fi
@@ -121,7 +121,7 @@ case $diff in
 
 		disable_expanded_output
 		#--quiet is important here to avoid outputting the repo URL, which may contain a secret token
-		git push --quiet $repo $deploy_branch
+		git push -f --quiet $repo $deploy_branch
 		enable_expanded_output
 		;;
 	*)
