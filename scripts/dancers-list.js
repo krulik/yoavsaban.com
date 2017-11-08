@@ -1,5 +1,17 @@
 'use strict';
+/*
+Template:
+{
+  title: ``,
+  image: ``,
+  lead: ``,
+  more: [
+    `פסקה ראשונה`,
+    `פסקה שניה`
+  ]
+}
 
+*/
 module.exports = [
   {
     title: 'אוהבים, מיתר וסיון',
