@@ -1,10 +1,7 @@
 'use strict';
 
-// const SECRET = 'KBez3J8kaIfAr5kqKy5TfxfKP8s';
 const SECRET = process.env.CLOUDINARY_SECRET;
-// const API_KEY = '384956938248651';
 const API_KEY = process.env.CLOUDINARY_API_KEY;
-// const CLOUD_NAME = 'dmib180cu';
 const CLOUD_NAME = process.env.CLOUDINARY_NAME;
 const cloudinaryOptions = {
   url: `https://${API_KEY}:${SECRET}@api.cloudinary.com/v1_1/${CLOUD_NAME}/resources/image?max_results=500`
