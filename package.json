@@ -7,7 +7,7 @@
     "port": 9000,
     "src": "src",
     "dist": "dist",
-    "deploy_script": "scripts/gh-dir-deploy.sh"
+    "deploy_script": "./scripts/gh-dir-deploy.sh"
   },
   "scripts": {
     "gh-deploy:first": "chmod +x $npm_package_config_deploy_script && $npm_package_config_deploy_script -s",
