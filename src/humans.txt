@@ -1,2 +1,12 @@
+/* TEAM */
+Developer: Serge Krul
+Site: http://serge.krul.co.il
+Twitter: https://twitter.com/sergekrul
+
+/* SITE */
+Stack: ES6, NodeJS, Cloudinary, VelocityJS, SwipeJS
+Tools: CircleCI, Github, NPM, VSCode
+
+/* THANKS */
 SVG close icon
   Created by Luca Santomauro from the Noun Project
