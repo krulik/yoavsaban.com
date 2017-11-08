@@ -7,11 +7,11 @@
     "port": 9000,
     "src": "src",
     "dist": "dist",
-    "deploy_script": "bash /scripts/gh-dir-deploy.sh"
+    "deploy_script": "scripts/gh-dir-deploy.sh"
   },
   "scripts": {
-    "gh-deploy:first": "chmod +x $npm_package_config_deploy_script && $npm_package_config_deploy_script -s",
-    "gh-deploy": "$npm_package_config_deploy_script",
+    "gh-deploy:first": "chmod +x $npm_package_config_deploy_script && bash $npm_package_config_deploy_script -s",
+    "gh-deploy": "bash $npm_package_config_deploy_script",
     "html": "cp $npm_package_config_src/index.html $npm_package_config_dist",
     "img": "cp -R $npm_package_config_src/images $npm_package_config_dist",
     "scripts": "cp -R $npm_package_config_src/scripts $npm_package_config_dist",
