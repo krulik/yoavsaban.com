@@ -7,7 +7,7 @@ const cloudinaryOptions = {
   url: `https://${API_KEY}:${SECRET}@api.cloudinary.com/v1_1/${CLOUD_NAME}/resources/image?max_results=500`
 };
 
-const BASE_URL = 'http://res.cloudinary.com/dmib180cu/image/upload';
+const BASE_URL = `http://res.cloudinary.com/${CLOUD_NAME}/image/upload`;
 const THUMB_OPTIONS = 'c_fill,g_auto,h_360,w_360';
 const LARGE_OPTIONS = 'c_fill,g_auto,q_auto,h_768,w_1280';
 const SMALL_OPTIONS = 'c_fill,g_auto,h_80,w_80';
