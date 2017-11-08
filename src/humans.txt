@@ -1,4 +1,7 @@
 /* TEAM */
+Designer: Avishag Krul
+Site: https://facebook.com/by.shoog
+
 Developer: Serge Krul
 Site: http://serge.krul.co.il
 Twitter: https://twitter.com/sergekrul
