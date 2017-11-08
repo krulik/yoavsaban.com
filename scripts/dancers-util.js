@@ -15,11 +15,17 @@ function renderDancer(dancer) {
         <div><!--
           --><p>${dancer.lead}</p><!--
         --></div>
-        <div class="Dancers-more js-more" aria-label="עוד"><!--
-          ${renderMore(dancer.more)}
-        --></div>
+        ${renderMoreBlock(dancer.more)}
       </blockquote>
     </li>`;
+}
+
+function renderMoreBlock(more) {
+  return more.length ? `
+    <div class="Dancers-more js-more" aria-label="עוד"><!--
+      ${renderMore(dancer.more)}
+    --></div>
+  ` : '';
 }
 
 function renderMore(more) {
