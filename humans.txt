@@ -11,5 +11,4 @@ Stack: ES6, NodeJS, Cloudinary, VelocityJS, SwipeJS
 Tools: CircleCI, Github, NPM, VSCode
 
 /* THANKS */
-SVG close icon
-  Created by Luca Santomauro from the Noun Project
+SVG close icon: Created by Luca Santomauro from the Noun Project
