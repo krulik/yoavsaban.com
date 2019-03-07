@@ -1,6 +1,6 @@
 {
   "name": "swipe-js",
-  "version": "2.2.10",
+  "version": "2.2.13",
   "main": [
     "./swipe.js"
   ],
@@ -21,7 +21,7 @@
   ],
   "homepage": "https://github.com/lyfeyaj/swipe",
   "authors": [
-    "Felix Liu <lyfeyaj@gmail.com> (http://lyfyeaj.com/)"
+    "Felix Liu <lyfeyaj@gmail.com> (http://lyfeyaj.com/)"
   ],
   "description": "Swipe is the most accurate touch slider",
   "keywords": [
@@ -29,11 +29,11 @@
     "slider",
     "touch"
   ],
-  "_release": "2.2.10",
+  "_release": "2.2.13",
   "_resolution": {
     "type": "version",
-    "tag": "2.2.10",
-    "commit": "d0786dcd15dd8b172c2ee7ee5820987e543cbbfd"
+    "tag": "2.2.13",
+    "commit": "0d3c0d53497ddb64233d4655ddf1e5174587ebab"
   },
   "_source": "https://github.com/lyfeyaj/swipe.git",
   "_target": "^2.2.4",
