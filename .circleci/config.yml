@@ -19,7 +19,7 @@ jobs:
     steps:
       - add-ssh-keys:
           fingerprints:
-            - "64:7e:e0:35:4c:b0:33:93:57:0b:04:bf:7c:58:97:2a"
+            - "45:a0:e5:0c:33:72:df:bb:4b:5a:07:39:42:23:6a:81"
       - checkout
 
       # Download and cache dependencies
