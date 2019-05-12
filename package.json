@@ -43,7 +43,7 @@
     "browser-sync": "^2.18.8",
     "critical": "^0.8.2",
     "lighthouse": "^1.5.1",
-    "node-sass": "^4.5.0",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "node-sass": "^4.12.0"
   }
 }
