@@ -31,9 +31,9 @@
 
 // Swipe
 // --------------------------------------------------------------
-// const carousel = document.querySelector('.js-swipe');
+// let carousel = document.querySelector('.js-swipe');
 // carousel.setAttribute('dir', 'ltr');
-// const mySwipe = new Swipe(carousel, {
+// let mySwipe = new Swipe(carousel, {
 //   startSlide: 0,
 //   speed: 400,
 //   auto: false,
@@ -45,8 +45,8 @@
 //   transitionEnd: function (index, elem) { }
 // });
 
-// var prev = document.querySelector('.js-swipe-prev');
-// var next = document.querySelector('.js-swipe-next');
+// let prev = document.querySelector('.js-swipe-prev');
+// let next = document.querySelector('.js-swipe-next');
 
 // prev.addEventListener('click', mySwipe.prev);
 // next.addEventListener('click', mySwipe.next);
@@ -58,15 +58,60 @@
 // https://developers.google.com/analytics/devguides/collection/analyticsjs/screens
 // https://developers.google.com/analytics/devguides/collection/analyticsjs/events
 
-// Scrol`
+// Video
 // --------------------------------------------------------------
-const scrollToLinks = document.querySelectorAll('.js-scrollTo');
-for (const scrollToLink of scrollToLinks) {
+let play = document.querySelector('.js-play');
+let close = document.querySelector('.js-close');
+let video = document.querySelector('.js-video');
+let videoActual = document.querySelector('video');
+play.addEventListener('click', e => {
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  setFullVideo();
+  videoActual.play();
+  ga('send', 'event', 'Video', 'play');
+	window.addEventListener('scroll', onScroll);
+});
+close.addEventListener('click', e => {
+  closeVideo();
+});
+function onScroll(e) {
+  setScrollVideo();
+  if (window.scrollY === 0 && !video.classList.contains('is-hidden')) {
+    video.classList.add('is-snap');
+    setTimeout(() => {
+      video.classList.remove('is-snap');
+    }, 500);
+    setFullVideo();
+  }
+}
+function setFullVideo() {
+  video.classList.add('is-full');
+  video.classList.remove('is-hidden');
+  video.classList.remove('is-scroll');
+}
+function closeVideo() {
+  video.classList.add('is-hidden');
+	setTimeout(() => {
+		video.classList.remove('is-full');
+    video.classList.remove('is-scroll');
+    window.removeEventListener('scroll', onScroll);
+	}, 500);
+}
+function setScrollVideo() {
+  video.classList.add('is-scroll');
+	video.classList.remove('is-full');
+}
+
+// Scroll
+// --------------------------------------------------------------
+let scrollToLinks = document.querySelectorAll('.js-scrollTo');
+for (let scrollToLink of scrollToLinks) {
   scrollToLink.addEventListener('click', e => {
     e.preventDefault();
-    const scrollTo = e.currentTarget.getAttribute('href');
-    const selector = `[name=${scrollTo.replace('#', '')}]`;
-    const target = document.querySelector(selector);
+    let scrollTo = e.currentTarget.getAttribute('href');
+    let selector = `[name=${scrollTo.replace('#', '')}]`;
+    let target = document.querySelector(selector);
     scrollToTarget(target)
       .then(() => {
         requestAnimationFrame(() => {
@@ -88,7 +133,7 @@ function scrollToTarget(target) {
 // --------------------------------------------------------------
 forEach(document.querySelectorAll('.js-more'), more => {
   hideEl(more);
-  var moreTrigger = document.createElement('a');
+  let moreTrigger = document.createElement('a');
   moreTrigger.classList.add('Dancers-more-trigger');
   moreTrigger.href = '';
   moreTrigger.textContent = more.getAttribute('aria-label');
@@ -127,15 +172,15 @@ document.addEventListener('click', hide);
 document.addEventListener('keyup', e => {
 	if (e.key === 'Escape') hide(e);
 	if (isImageOpen() && e.key.startsWith('Arrow')) {
-		const num = document.location.hash.replace('#img-', '');
-		const func = e.key.endsWith('Right') ? add : e.key.endsWith('Left') ? substract : noop;
+		let num = document.location.hash.replace('#img-', '');
+		let func = e.key.endsWith('Right') ? add : e.key.endsWith('Left') ? substract : noop;
 		document.location.hash = document.location.hash.replace(num, func(Number(num), 1));
 	}
 });
 
 function loadLazyImage(el) {
-  var src = el.dataset.src;
-  var img = document.createElement('img');
+  let src = el.dataset.src;
+  let img = document.createElement('img');
   img.addEventListener('load', e => {
     el.insertAdjacentElement('afterend', img);
     el.parentNode.removeChild(el);
