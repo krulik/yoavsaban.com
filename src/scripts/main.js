@@ -128,6 +128,7 @@ for (let scrollToLink of scrollToLinks) {
 document.addEventListener("click", function(event) {
 if (event.target.closest(".MainNav-list")) return;
 if(event.target.closest(".MainNav-toggle")) return;
+if(event.target.closest(".MainNav")) return;
 if(navSelector.classList.contains("isOpen")) {
   navSelector.classList.remove('isOpen');
 } else {
