@@ -125,6 +125,17 @@ for (let scrollToLink of scrollToLinks) {
 }
 
 
+document.addEventListener("click", function(event) {
+if (event.target.closest(".MainNav-list")) return;
+if(event.target.closest(".MainNav-toggle")) return;
+if(navSelector.classList.contains("isOpen")) {
+  navSelector.classList.remove('isOpen');
+} else {
+  navSelector.classList.add('isOpen');
+}
+});
+
+
 navBtnSelector.addEventListener('click' , (e) => {
   e.preventDefault();
   if(navSelector.classList.contains("isOpen")) {
