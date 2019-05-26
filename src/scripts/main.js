@@ -131,8 +131,6 @@ if(event.target.closest(".MainNav-toggle")) return;
 if(event.target.closest(".MainNav")) return;
 if(navSelector.classList.contains("isOpen")) {
   navSelector.classList.remove('isOpen');
-} else {
-  navSelector.classList.add('isOpen');
 }
 });
 
