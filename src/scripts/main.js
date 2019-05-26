@@ -64,6 +64,8 @@ let play = document.querySelector('.js-play');
 let close = document.querySelector('.js-close');
 let video = document.querySelector('.js-video');
 let videoActual = document.querySelector('video');
+let navBtnSelector = document.querySelector(".MainNav-toggle");
+let navSelector = document.querySelector(".MainNav-list");
 play.addEventListener('click', e => {
   e.preventDefault();
   e.stopImmediatePropagation();
@@ -109,6 +111,7 @@ let scrollToLinks = document.querySelectorAll('.js-scrollTo');
 for (let scrollToLink of scrollToLinks) {
   scrollToLink.addEventListener('click', e => {
     e.preventDefault();
+    navSelector.classList.remove('isOpen');
     let scrollTo = e.currentTarget.getAttribute('href');
     let selector = `[name=${scrollTo.replace('#', '')}]`;
     let target = document.querySelector(selector);
@@ -120,6 +123,17 @@ for (let scrollToLink of scrollToLinks) {
       });
   });
 }
+
+
+navBtnSelector.addEventListener('click' , (e) => {
+  e.preventDefault();
+  if(navSelector.classList.contains("isOpen")) {
+    navSelector.classList.remove('isOpen');
+  } else {
+    navSelector.classList.add('isOpen');
+  }
+});
+
 
 function scrollToTarget(target) {
   return Velocity(target, 'scroll', {

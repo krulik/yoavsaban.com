@@ -32,9 +32,10 @@ ul.MainNav-list {
 .MainNav-list {
   transform: scale(0);
   transform-origin: top left;
+  transition: all 0.3s;
 }
 
-.MainNav-list:target {
+.MainNav-list.isOpen{
   transform: scale(1);
   transition: transform .3s ease;
 }
