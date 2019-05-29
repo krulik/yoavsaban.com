@@ -32,7 +32,7 @@ ul.MainNav-list {
 .MainNav-list {
   transform: scale(0);
   transform-origin: top left;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
 }
 
 .MainNav-list.isOpen{

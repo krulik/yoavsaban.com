@@ -1,7 +1,7 @@
 /* globals Velocity, Headroom */
 /* jshint -W083, -W098, -W116 */
 
-'use strict';
+"use strict";
 
 // TODO
 // --------------------------------------------------------------
@@ -23,7 +23,6 @@
 // - Nav close timing
 // - Horizontal padding like section
 // - Vertical padding like section
-
 
 // Contact
 // - More space below title
@@ -60,109 +59,107 @@
 
 // Video
 // --------------------------------------------------------------
-let play = document.querySelector('.js-play');
-let close = document.querySelector('.js-close');
-let video = document.querySelector('.js-video');
-let videoActual = document.querySelector('video');
-let navBtnSelector = document.querySelector(".MainNav-toggle");
-let navSelector = document.querySelector(".MainNav-list");
-play.addEventListener('click', e => {
+let play = document.querySelector(".js-play");
+let close = document.querySelector(".js-close");
+let video = document.querySelector(".js-video");
+let videoActual = document.querySelector("video");
+let navToggle = document.querySelector(".MainNav-toggle");
+let navList = document.querySelector(".MainNav-list");
+play.addEventListener("click", e => {
   e.preventDefault();
   e.stopImmediatePropagation();
   setFullVideo();
   videoActual.play();
-  ga('send', 'event', 'Video', 'play');
-	window.addEventListener('scroll', onScroll);
+  ga("send", "event", "Video", "play");
+  window.addEventListener("scroll", onScroll);
 });
-close.addEventListener('click', e => {
+close.addEventListener("click", e => {
   closeVideo();
 });
 function onScroll(e) {
   setScrollVideo();
-  if (window.scrollY === 0 && !video.classList.contains('is-hidden')) {
-    video.classList.add('is-snap');
+  if (window.scrollY === 0 && !video.classList.contains("is-hidden")) {
+    video.classList.add("is-snap");
     setTimeout(() => {
-      video.classList.remove('is-snap');
+      video.classList.remove("is-snap");
     }, 500);
     setFullVideo();
   }
 }
 function setFullVideo() {
-  video.classList.add('is-full');
-  video.classList.remove('is-hidden');
-  video.classList.remove('is-scroll');
+  video.classList.add("is-full");
+  video.classList.remove("is-hidden");
+  video.classList.remove("is-scroll");
 }
 function closeVideo() {
-  video.classList.add('is-hidden');
-	setTimeout(() => {
-		video.classList.remove('is-full');
-    video.classList.remove('is-scroll');
-    window.removeEventListener('scroll', onScroll);
-	}, 500);
+  video.classList.add("is-hidden");
+  setTimeout(() => {
+    video.classList.remove("is-full");
+    video.classList.remove("is-scroll");
+    window.removeEventListener("scroll", onScroll);
+  }, 500);
 }
 function setScrollVideo() {
-  video.classList.add('is-scroll');
-	video.classList.remove('is-full');
+  video.classList.add("is-scroll");
+  video.classList.remove("is-full");
 }
 
 // Scroll
 // --------------------------------------------------------------
-let scrollToLinks = document.querySelectorAll('.js-scrollTo');
+let scrollToLinks = document.querySelectorAll(".js-scrollTo");
 for (let scrollToLink of scrollToLinks) {
-  scrollToLink.addEventListener('click', e => {
+  scrollToLink.addEventListener("click", e => {
     e.preventDefault();
-    navSelector.classList.remove('isOpen');
-    let scrollTo = e.currentTarget.getAttribute('href');
-    let selector = `[name=${scrollTo.replace('#', '')}]`;
+    navList.classList.remove("isOpen");
+    let scrollTo = e.currentTarget.getAttribute("href");
+    let selector = `[name=${scrollTo.replace("#", "")}]`;
     let target = document.querySelector(selector);
-    scrollToTarget(target)
-      .then(() => {
-        requestAnimationFrame(() => {
-          document.location.hash = scrollTo;
-        });
+    scrollToTarget(target).then(() => {
+      requestAnimationFrame(() => {
+        document.location.hash = scrollTo;
       });
+    });
   });
 }
-
-
+//Mobile-Menu
 document.addEventListener("click", function(event) {
-if (event.target.closest(".MainNav-list") || 
-event.target.closest(".MainNav-toggle") ||
-event.target.closest(".MainNav")) return;
-if(navSelector.classList.contains("isOpen")) {
-  navSelector.classList.remove('isOpen');
-}
+  if (
+    event.target.closest(".MainNav-list") ||
+    event.target.closest(".MainNav-toggle") ||
+    event.target.closest(".MainNav")
+  )
+    return;
+  if (navList.classList.contains("isOpen")) {
+    navList.classList.remove("isOpen");
+  }
 });
-
-
-navBtnSelector.addEventListener('click' , (e) => {
+navToggle.addEventListener("click", e => {
   e.preventDefault();
-  if(navSelector.classList.contains("isOpen")) {
-    navSelector.classList.remove('isOpen');
+  if (navList.classList.contains("isOpen")) {
+    navList.classList.remove("isOpen");
   } else {
-    navSelector.classList.add('isOpen');
+    navList.classList.add("isOpen");
   }
 });
 
-
 function scrollToTarget(target) {
-  return Velocity(target, 'scroll', {
+  return Velocity(target, "scroll", {
     duration: 600,
     delay: 0,
-    easing: 'ease'
+    easing: "ease"
   });
 }
 
 // Dancers
 // --------------------------------------------------------------
-forEach(document.querySelectorAll('.js-more'), more => {
+forEach(document.querySelectorAll(".js-more"), more => {
   hideEl(more);
-  let moreTrigger = document.createElement('a');
-  moreTrigger.classList.add('Dancers-more-trigger');
-  moreTrigger.href = '';
-  moreTrigger.textContent = more.getAttribute('aria-label');
-  more.insertAdjacentElement('afterend', moreTrigger);
-  moreTrigger.addEventListener('click', e => {
+  let moreTrigger = document.createElement("a");
+  moreTrigger.classList.add("Dancers-more-trigger");
+  moreTrigger.href = "";
+  moreTrigger.textContent = more.getAttribute("aria-label");
+  more.insertAdjacentElement("afterend", moreTrigger);
+  moreTrigger.addEventListener("click", e => {
     e.preventDefault();
     showEl(more);
     hideEl(moreTrigger);
@@ -174,39 +171,48 @@ function forEach(arrayLike, fn) {
 }
 
 function hideEl(el) {
-  el.setAttribute('hidden', 'hidden');
+  el.setAttribute("hidden", "hidden");
 }
 
 function showEl(el) {
-  el.removeAttribute('hidden');
+  el.removeAttribute("hidden");
 }
 
 // Mix
 // --------------------------------------------------------------
-forEach(document.querySelectorAll('.js-lazy-mix'), loadLazyMix);
+forEach(document.querySelectorAll(".js-lazy-mix"), loadLazyMix);
 
 function loadLazyMix(el) {
-  el.innerHTML = `<iframe src="${el.dataset.src}" height="${el.dataset.height}" frameborder="0"></iframe>`;
+  el.innerHTML = `<iframe src="${el.dataset.src}" height="${
+    el.dataset.height
+  }" frameborder="0"></iframe>`;
 }
 
 // Gallery
 // --------------------------------------------------------------
-forEach(document.querySelectorAll('.js-lazy-image'), loadLazyImage);
-document.addEventListener('click', hide);
-document.addEventListener('keyup', e => {
-	if (e.key === 'Escape') hide(e);
-	if (isImageOpen() && e.key.startsWith('Arrow')) {
-		let num = document.location.hash.replace('#img-', '');
-		let func = e.key.endsWith('Right') ? add : e.key.endsWith('Left') ? substract : noop;
-		document.location.hash = document.location.hash.replace(num, func(Number(num), 1));
-	}
+forEach(document.querySelectorAll(".js-lazy-image"), loadLazyImage);
+document.addEventListener("click", hide);
+document.addEventListener("keyup", e => {
+  if (e.key === "Escape") hide(e);
+  if (isImageOpen() && e.key.startsWith("Arrow")) {
+    let num = document.location.hash.replace("#img-", "");
+    let func = e.key.endsWith("Right")
+      ? add
+      : e.key.endsWith("Left")
+      ? substract
+      : noop;
+    document.location.hash = document.location.hash.replace(
+      num,
+      func(Number(num), 1)
+    );
+  }
 });
 
 function loadLazyImage(el) {
   let src = el.dataset.src;
-  let img = document.createElement('img');
-  img.addEventListener('load', e => {
-    el.insertAdjacentElement('afterend', img);
+  let img = document.createElement("img");
+  img.addEventListener("load", e => {
+    el.insertAdjacentElement("afterend", img);
     el.parentNode.removeChild(el);
   });
   img.src = src;
@@ -214,20 +220,34 @@ function loadLazyImage(el) {
 }
 
 function hide(e) {
-	if (isImageOpen() && isClickedOutside(e)) {
-		requestAnimationFrame(() => document.location.hash = '#id-gallery');
-	}
+  if (isImageOpen() && isClickedOutside(e)) {
+    requestAnimationFrame(() => (document.location.hash = "#id-gallery"));
+  }
 }
 
 function noop() {}
-function add(a, b) { return a + b; }
-function substract(a, b) { return a - b; }
-function isImageOpen() { return document.location.hash.startsWith('#img-'); }
+function add(a, b) {
+  return a + b;
+}
+function substract(a, b) {
+  return a - b;
+}
+function isImageOpen() {
+  return document.location.hash.startsWith("#img-");
+}
 function isClickedOutside(e) {
   return !isImage(e.target) && !isImageControl(e.target);
 }
 function isClickedImage(e) {
   return isImage(e.target);
 }
-function isImageControl(element) { return element.closest('svg') !== null || element.classList.contains('Gallery-next') || element.classList.contains('Gallery-prev'); }
-function isImage(element) { return element.tagName ==='IMG' && element.closest('[id^=img-]') !== null; }
+function isImageControl(element) {
+  return (
+    element.closest("svg") !== null ||
+    element.classList.contains("Gallery-next") ||
+    element.classList.contains("Gallery-prev")
+  );
+}
+function isImage(element) {
+  return element.tagName === "IMG" && element.closest("[id^=img-]") !== null;
+}
