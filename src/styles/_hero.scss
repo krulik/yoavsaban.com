@@ -14,7 +14,6 @@ body:before {
 }
 
 .Hero {
-  background-image: url(../images/hero.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -25,6 +24,7 @@ body:before {
 }
 
 .Hero-element {
+  z-index:1;  
   max-width: 240px;
   margin: auto;
   position: absolute;

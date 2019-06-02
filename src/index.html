@@ -58,24 +58,23 @@
       <h1 class="Hero-title Type--bold">Dj יואב סבן</h1>
     </a>
   </nav>
-  <a href="#about" class="js-scrollTo">
-    <div class="Hero">
-      <img src="images/logo.png" alt="" class="Hero-element">
-      <span role="heading" class="Hero-title Type--bold u-hideSm">Dj יואב סבן</span>
-      <button class="Hero-element Video-play js-play">
-        נגן
-        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 501.5 501.5"><g><path d="M302.67 90.877l55.77 55.508L254.575 250.75 358.44 355.116l-55.77 55.506L143.56 250.75z"/></g></svg>
-      </button>
-    </div>
-  </a>
-  <div class="Video is-hidden js-video">
+  <div class="Hero js-video">
+      <a href="#about" class="js-scrollTo video-button is-hidden">
+          <img src="images/logo.png" alt="" class="Hero-element">
+          <span role="heading" class="Hero-title Type--bold u-hideSm">Dj יואב סבן</span>
+          <button class="Hero-element Video-play js-play">
+            נגן
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 501.5 501.5"><g><path d="M302.67 90.877l55.77 55.508L254.575 250.75 358.44 355.116l-55.77 55.506L143.56 250.75z"/></g></svg>
+          </button>
+      </a>
     <span class="Video-close js-close">
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="45" height="45" x="0px" y="0px" viewBox="0 0 100 125" style="enable-background:new 0 0 100 100;" xml:space="preserve"><g><polygon points="71.936,16.168 50.062,38.041 28.189,16.168 16.167,28.189 38.041,50.062 16.167,71.936 28.189,83.957    50.062,62.084 71.936,83.957 83.957,71.936 62.084,50.062 83.957,28.189  "/></g></svg>
     </span>
     <video
-      class="Video-actual"
-      src="https://www.dropbox.com/s/rgijqsizfbqrxrr/Yoav%20Clip%20Final.mp4?dl=1"
+      src="/src/video/Yoav-video.mp4"
       preload="auto"
+      autoplay
+      loop
       muted
       controls>
     </video>
