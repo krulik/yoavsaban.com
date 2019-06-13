@@ -12,7 +12,7 @@ body { color: white; }
 }
 
 .MainNav-list {
-  background-color: $c-dark;
+  background-color: rgba($c-dark, $o-nav);
   color: $c-whiteish;
 }
 

@@ -90,9 +90,11 @@ function setFullVideo() {
   video.classList.add("is-full");
   video.classList.remove("is-hidden");
   video.classList.remove("is-scroll");
+  videoActual.muted = false;
 }
 function closeVideo() {
   video.classList.add("is-hidden");
+  videoActual.muted = true;
   setTimeout(() => {
     video.classList.remove("is-full");
     video.classList.remove("is-scroll");
