@@ -96,6 +96,7 @@ function setFullVideo() {
   video.classList.add("is-full");
   video.classList.remove("is-hidden");
   video.classList.remove("is-scroll");
+  videoActual.muted = false;
 }
 function closeVideo() {
   document.querySelector(".js-video video").classList.remove("Video-actual");
