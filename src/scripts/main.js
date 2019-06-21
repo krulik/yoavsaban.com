@@ -100,6 +100,7 @@ function setFullVideo() {
 }
 function closeVideo() {
   document.querySelector(".js-video video").classList.remove("Video-actual");
+  videoActual.muted = true;
   video.classList.remove("Video");
   video.classList.add("Hero");
   videoButton.style.display = 'block';
