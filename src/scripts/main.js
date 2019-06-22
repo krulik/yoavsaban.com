@@ -83,13 +83,15 @@ close.addEventListener("click", e => {
   closeVideo();
 });
 function onScroll(e) {
-  setScrollVideo();
-  if (window.scrollY === 0 && !video.classList.contains("is-hidden")) {
-    video.classList.add("is-snap");
-    setTimeout(() => {
-      video.classList.remove("is-snap");
-    }, 500);
-    setFullVideo();
+  if(window.innerWidth > 768) {
+    setScrollVideo();
+    if (window.scrollY === 0 && !video.classList.contains("is-hidden")) {
+      video.classList.add("is-snap");
+      setTimeout(() => {
+        video.classList.remove("is-snap");
+      }, 500);
+      setFullVideo();
+    }
   }
 }
 function setFullVideo() {

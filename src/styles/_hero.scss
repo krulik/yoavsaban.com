@@ -4,6 +4,7 @@ html, body {
 
 main {
   position: relative;
+  
 }
 
 body:before {
@@ -21,6 +22,21 @@ body:before {
   bottom: 0;
   left: 0;
   overflow: hidden;
+}
+
+
+.Hero-bg {
+
+  background-image: url(../images/hero.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+ 
 }
 
 .Hero video{
@@ -56,7 +72,6 @@ body:before {
 
 .Hero-title {
   $h-element: 133px;
-
   font-size: 1.25rem;
   position: fixed;
   top: 0;
