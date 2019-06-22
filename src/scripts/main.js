@@ -66,6 +66,9 @@ let videoActual = document.querySelector("video");
 let navToggle = document.querySelector(".MainNav-toggle");
 let navList = document.querySelector(".MainNav-list");
 let videoButton = document.querySelector(".video-button");
+window.addEventListener("scroll",onScrollFadeOut);
+
+
 
 play.addEventListener("click", e => {
   e.preventDefault();
@@ -82,6 +85,14 @@ play.addEventListener("click", e => {
 close.addEventListener("click", e => {
   closeVideo();
 });
+
+
+function onScrollFadeOut(e) {
+
+  document.querySelector(".Hero video").style.opacity = 1 - window.scrollY / 6000;
+
+}
+
 function onScroll(e) {
   if(window.innerWidth > 768) {
     setScrollVideo();
