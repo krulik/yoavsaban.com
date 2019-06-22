@@ -65,7 +65,7 @@ let video = document.querySelector(".js-video");
 let videoActual = document.querySelector("video");
 let navToggle = document.querySelector(".MainNav-toggle");
 let navList = document.querySelector(".MainNav-list");
-let videoButton = document.querySelector(".video-button");
+let openFullVideoBtn = document.querySelector(".openFullVideoBtn");
 window.addEventListener("scroll",onScrollFadeOut);
 
 play.addEventListener("click", e => {
@@ -75,7 +75,7 @@ play.addEventListener("click", e => {
   document.querySelector(".js-video video").classList.add("Video-actual");
   video.classList.add("Video");
   video.classList.remove("Hero");
-  videoButton.style.display = 'none';
+  openFullVideoBtn.style.display = 'none';
   videoActual.play();
   ga("send", "event", "Video", "play");
   window.addEventListener("scroll", onScroll);
@@ -111,7 +111,7 @@ function closeVideo() {
   videoActual.muted = true;
   video.classList.remove("Video");
   video.classList.add("Hero");
-  videoButton.style.display = 'block';
+  openFullVideoBtn.style.display = 'block';
   setTimeout(() => {
     video.classList.remove("is-full");
     video.classList.remove("is-scroll");
