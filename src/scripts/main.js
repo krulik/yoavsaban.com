@@ -85,7 +85,7 @@ close.addEventListener("click", e => {
 });
 
 function onScrollFadeOut(e) {
-  document.querySelector(".Hero video").style.opacity = 1 - window.scrollY / 6000;
+  document.querySelector(".Hero video").style.opacity = 1 - window.scrollY / 2000;
 }
 
 function onScroll(e) {
