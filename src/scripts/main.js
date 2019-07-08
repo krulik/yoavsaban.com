@@ -66,7 +66,17 @@ let videoActual = document.querySelector("video");
 let navToggle = document.querySelector(".MainNav-toggle");
 let navList = document.querySelector(".MainNav-list");
 let openFullVideoBtn = document.querySelector(".openFullVideoBtn");
-window.addEventListener("scroll",onScrollFadeOut);
+window.addEventListener("scroll", onScrollFadeOut);
+window.addEventListener('error', e => {
+  e.preventDefault();
+  console.warn(e);
+});
+
+// videoActual.style.display = 'none';
+// videoActual.addEventListener('canplay', e => {
+//   // videoActual.style.display = 'block';
+//   console.log(e.timeStamp);
+// });
 
 play.addEventListener("click", e => {
   e.preventDefault();
@@ -80,12 +90,12 @@ play.addEventListener("click", e => {
   ga("send", "event", "Video", "play");
   window.addEventListener("scroll", onScroll);
 });
-close.addEventListener("click", e => {
-  closeVideo();
-});
+// close.addEventListener("click", e => {
+//   closeVideo();
+// });
 
 function onScrollFadeOut(e) {
-  document.querySelector(".Hero video").style.opacity = 1 - window.scrollY / 2000;
+  // document.querySelector(".Hero video").style.opacity = 1 - window.scrollY / 2000;
 }
 
 function onScroll(e) {
