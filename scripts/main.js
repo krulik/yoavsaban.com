@@ -185,9 +185,12 @@ function showEl(el) {
 forEach(document.querySelectorAll(".js-lazy-mix"), loadLazyMix);
 
 function loadLazyMix(el) {
-  el.innerHTML = `<iframe src="${el.dataset.src}" height="${
-    el.dataset.height
-  }" frameborder="0"></iframe>`;
+  let style = window.getComputedStyle(el.closest('.Music-mix'));
+  if (style.getPropertyValue('display') !== 'none') {
+    el.innerHTML = `<iframe src="${el.dataset.src}" height="${
+      el.dataset.height
+    }" frameborder="0"></iframe>`;
+  }
 }
 
 // Gallery
@@ -210,14 +213,20 @@ document.addEventListener("keyup", e => {
   }
 });
 
-function loadLazyImage(el) {
+function loadLazyImage(el, i) {
   let src = el.dataset.src;
   let img = document.createElement("img");
   img.addEventListener("load", e => {
-    el.insertAdjacentElement("afterend", img);
-    el.parentNode.removeChild(el);
+    requestAnimationFrame(() => {
+      el.insertAdjacentElement("afterend", img);
+      el.parentNode.removeChild(el);
+      img.removeAttribute("width");
+      img.removeAttribute("height");
+    });
   });
   img.src = src;
+  img.width = 80;
+  img.height = 80;
   img.className = el.className;
 }
 
