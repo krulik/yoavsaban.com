@@ -1,0 +1,22 @@
+.Whatsapp {
+  z-index: 1;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  width: 60px;
+  filter: invert(1);
+  transition: all ease .2s;
+  opacity: 0.8;
+}
+
+.Whatsapp.is-hidden {
+  opacity: 0;
+}
+
+.Whatsapp:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.Whatsapp img {
+  max-width: 100%;
+}
