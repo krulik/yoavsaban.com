@@ -4,7 +4,7 @@ const SECRET = process.env.CLOUDINARY_SECRET;
 const API_KEY = process.env.CLOUDINARY_API_KEY;
 const CLOUD_NAME = process.env.CLOUDINARY_NAME;
 const cloudinaryOptions = {
-  url: `https://${API_KEY}:${SECRET}@api.cloudinary.com/v1_1/${CLOUD_NAME}/resources/image?max_results=500`
+  url: `https://${API_KEY}:${SECRET}@api.cloudinary.com/v1_1/${CLOUD_NAME}/resources/image?max_results=500&tags=true`
 };
 
 const BASE_URL = `http://res.cloudinary.com/${CLOUD_NAME}/image/upload`;
@@ -18,8 +18,13 @@ module.exports = {
   cloudinaryOptions,
   mapCloudinary,
   renderThumb,
-  renderLarge
+  renderLarge,
+  filter
 };
+
+function filter(cloudinaryImage) {
+  return cloudinaryImage.tags.includes('favorite');
+}
 
 function mapCloudinary(cloudinaryImage) {
   return cloudinaryImage.public_id;
