@@ -57,6 +57,20 @@
 // https://developers.google.com/analytics/devguides/collection/analyticsjs/screens
 // https://developers.google.com/analytics/devguides/collection/analyticsjs/events
 
+// Whatsapp
+// --------------------------------------------------------------
+let observer = new IntersectionObserver((entries) => {
+  entries.forEach(ent => {
+    if (ent.isIntersecting) {
+      document.querySelector('.Whatsapp').classList.add('is-hidden');
+    } else {
+      document.querySelector('.Whatsapp').classList.remove('is-hidden');
+    }
+  })
+});
+
+observer.observe(document.querySelector('.Contact'));
+
 // Video
 // --------------------------------------------------------------
 let play = document.querySelector(".js-play");
