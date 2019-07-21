@@ -18,7 +18,10 @@ getJSON(imagesUtil.cloudinaryOptions)
   });
 
 function processTemplate(imagesList, dancersList) {
-  imagesList = imagesList.map(imagesUtil.mapCloudinary);
+  imagesList = imagesList
+    .filter(imagesUtil.filter)
+    .map(imagesUtil.mapCloudinary);
+
   fs.readFile(templateUrl, 'utf8', (err, indexContent) => {
     let html = '';
     html = indexContent.replace('{{thumbs}}', imagesList.map(imagesUtil.renderThumb).join(''));
