@@ -63,21 +63,17 @@ let play = document.querySelector(".js-play");
 let close = document.querySelector(".js-close");
 let video = document.querySelector(".js-video");
 let videoActual = document.querySelector("video");
-let navToggle = document.querySelector(".MainNav-toggle");
-let navList = document.querySelector(".MainNav-list");
-let openFullVideoBtn = document.querySelector(".openFullVideoBtn");
-window.addEventListener("scroll",onScrollFadeOut);
+
+window.addEventListener("scroll", onScrollFadeOut);
 
 play.addEventListener("click", e => {
   e.preventDefault();
   e.stopImmediatePropagation();
   setFullVideo();
-  document.querySelector(".js-video video").classList.add("Video-actual");
   video.classList.add("Video");
   video.classList.remove("Hero");
-  openFullVideoBtn.style.display = 'none';
-  videoActual.play();
   ga("send", "event", "Video", "play");
+  window.removeEventListener("scroll", onScrollFadeOut);
   window.addEventListener("scroll", onScroll);
 });
 close.addEventListener("click", e => {
@@ -85,7 +81,14 @@ close.addEventListener("click", e => {
 });
 
 function onScrollFadeOut(e) {
-  document.querySelector(".Hero video").style.opacity = 1 - window.scrollY / 2000;
+  let opacity = 1 - window.scrollY / 2000;
+  if (opacity < 0) {
+    videoActual.pause();
+    return;
+  } else if (videoActual.paused) {
+    videoActual.play();
+  }
+  videoActual.style.opacity = 1 - window.scrollY / 2000;
 }
 
 function onScroll(e) {
@@ -105,17 +108,18 @@ function setFullVideo() {
   video.classList.remove("is-hidden");
   video.classList.remove("is-scroll");
   videoActual.muted = false;
+  videoActual.controls = true;
 }
 function closeVideo() {
-  document.querySelector(".js-video video").classList.remove("Video-actual");
   videoActual.muted = true;
+  videoActual.controls = false;
   video.classList.remove("Video");
   video.classList.add("Hero");
-  openFullVideoBtn.style.display = 'block';
   setTimeout(() => {
     video.classList.remove("is-full");
     video.classList.remove("is-scroll");
     window.removeEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScrollFadeOut);
   }, 500);
 }
 function setScrollVideo() {
@@ -125,6 +129,8 @@ function setScrollVideo() {
 
 // Scroll
 // --------------------------------------------------------------
+let navList = document.querySelector(".MainNav-list");
+let navToggle = document.querySelector(".MainNav-toggle");
 let scrollToLinks = document.querySelectorAll(".js-scrollTo");
 for (let scrollToLink of scrollToLinks) {
   scrollToLink.addEventListener("click", e => {
