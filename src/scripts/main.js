@@ -77,14 +77,27 @@ if (typeof IntersectionObserver !== 'undefined') {
 // Video
 // --------------------------------------------------------------
 let cl = cloudinary.Cloudinary.new({cloud_name: 'dmib180cu'});
+const CLIP_URL = 'https://res.cloudinary.com/dmib180cu/video/upload/c_scale,vc_auto,w_1024/v1564144711/clip_m50wec.mp4';
 let play = document.querySelector('.js-play');
 let close = document.querySelector('.js-close');
 let video = document.querySelector('.js-video');
 let videoActual = document.querySelector('video');
 
-window.addEventListener('scroll', onScrollFadeOut);
+if (!isMobile()) {
+  setupVideo();
+}
 
-play.addEventListener('click', e => {
+function setupVideo() {
+  videoActual.src = CLIP_URL;
+  videoActual.addEventListener('canplaythrough', e => {
+    videoActual.removeAttribute('hidden');
+    window.addEventListener('scroll', onScrollFadeOut);
+    play.addEventListener('click', onVideoOpen);
+    close.addEventListener('click', onVideoClose);
+  });
+}
+
+function onVideoOpen(e) {
   e.preventDefault();
   e.stopImmediatePropagation();
   if (e.target.closest('.js-close')) {
@@ -94,12 +107,14 @@ play.addEventListener('click', e => {
   ga('send', 'event', 'Video', 'play');
   window.removeEventListener('scroll', onScrollFadeOut);
   window.addEventListener('scroll', onScrollSmall);
-});
-close.addEventListener('click', e => {
-  closeVideo();
-});
+}
 
 function onScrollFadeOut(e) {
+  // TODO shouldn't happen
+  if (video.classList.contains('is-small')) {
+    window.removeEventListener('scroll', onScrollFadeOut);
+    return;
+  }
   let opacity = 1 - window.scrollY / 2000;
   if (opacity < 0) {
     videoActual.pause();
@@ -111,15 +126,16 @@ function onScrollFadeOut(e) {
 }
 
 function onScrollSmall(e) {
-  if(window.innerWidth > 768) {
-    setSmallVideo();
-    if (window.scrollY === 0) {
-      video.classList.add('is-snap');
-      setFullVideo();
-      setTimeout(() => {
-        video.classList.remove('is-snap');
-      }, 500);
-    }
+  if (isMobile()) {
+    return;
+  }
+  setSmallVideo();
+  if (window.scrollY === 0) {
+    video.classList.add('is-snap');
+    setFullVideo();
+    setTimeout(() => {
+      video.classList.remove('is-snap');
+    }, 500);
   }
 }
 function setFullVideo() {
@@ -136,7 +152,7 @@ function setSmallVideo() {
   video.classList.add('is-small');
 }
 
-function closeVideo() {
+function onVideoClose(e) {
   videoActual.muted = true;
   videoActual.controls = false;
   video.classList.remove('Video');
@@ -166,26 +182,49 @@ for (let scrollToLink of scrollToLinks) {
     });
   });
 }
-//Mobile-Menu
-document.addEventListener('click', function(event) {
+// Mobile Menu
+navToggle.addEventListener('click', onMobileMenuOpen);
+
+function onClickAnywhere(e) {
   if (
-    event.target.closest('.MainNav-list') ||
-    event.target.closest('.MainNav-toggle') ||
-    event.target.closest('.MainNav')
-  )
+    e.target.closest('.MainNav-list') ||
+    e.target.closest('.MainNav-toggle')
+  ) {
     return;
-  if (navList.classList.contains('is-open')) {
-    navList.classList.remove('is-open');
   }
-}, true);
-navToggle.addEventListener('click', e => {
+  if (navList.classList.contains('is-open')) {
+    closeMobileMenu();
+  }
+}
+
+function closeOnScroll(e) {
+  if (navList.classList.contains('is-open')) {
+    closeMobileMenu();
+  }
+}
+
+function onMobileMenuOpen(e) {
   e.preventDefault();
   if (navList.classList.contains('is-open')) {
-    navList.classList.remove('is-open');
+    closeMobileMenu();
   } else {
-    navList.classList.add('is-open');
+    openMobileMenu();
   }
-});
+}
+
+function openMobileMenu() {
+  navList.classList.add('is-open');
+  setTimeout(() => {
+    window.addEventListener('scroll', closeOnScroll);
+    document.addEventListener('click', onClickAnywhere);
+  }, 1000);
+}
+
+function closeMobileMenu() {
+  navList.classList.remove('is-open');
+  window.removeEventListener('scroll', closeOnScroll);
+  document.removeEventListener('click', onClickAnywhere);
+}
 
 function scrollToTarget(target) {
   return Velocity(target, 'scroll', {
@@ -304,4 +343,8 @@ function isImageControl(element) {
 }
 function isImage(element) {
   return element.tagName === 'IMG' && element.closest('[id^=img-]') !== null;
+}
+
+function isMobile() {
+  return window.innerWidth < 800;
 }
