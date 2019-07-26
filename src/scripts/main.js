@@ -59,20 +59,20 @@
 
 // Whatsapp
 // --------------------------------------------------------------
-if (typeof IntersectionObserver !== 'undefined') {
-  let whatsappButton = document.querySelector('.Whatsapp');
-  let observer = new IntersectionObserver((entries) => {
-    entries.forEach(ent => {
-      if (ent.isIntersecting) {
-        whatsappButton.classList.add('is-hidden');
-      } else {
-        whatsappButton.classList.remove('is-hidden');
-      }
-    })
-  });
+// if (typeof IntersectionObserver !== 'undefined') {
+//   let whatsappButton = document.querySelector('.Whatsapp');
+//   let observer = new IntersectionObserver((entries) => {
+//     entries.forEach(ent => {
+//       if (ent.isIntersecting) {
+//         whatsappButton.classList.add('is-hidden');
+//       } else {
+//         whatsappButton.classList.remove('is-hidden');
+//       }
+//     })
+//   });
 
-  observer.observe(document.querySelector('.Contact'));
-}
+//   observer.observe(document.querySelector('.Contact'));
+// }
 
 // Video
 // --------------------------------------------------------------
