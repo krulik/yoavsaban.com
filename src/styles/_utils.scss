@@ -25,12 +25,12 @@
 
 .u-hideLg {
   @media (min-width: $bp-md) {
-    display: none;
+    display: none !important;
   }
 }
 
 .u-hideSm {
   @media (max-width: $bp-md) {
-    display: none;
+    display: none !important;
   }
 }
