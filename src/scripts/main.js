@@ -1,7 +1,7 @@
 /* globals Velocity, Headroom */
 /* jshint -W083, -W098, -W116 */
 
-"use strict";
+'use strict';
 
 // TODO
 // --------------------------------------------------------------
@@ -59,38 +59,43 @@
 
 // Whatsapp
 // --------------------------------------------------------------
-let observer = new IntersectionObserver((entries) => {
-  entries.forEach(ent => {
-    if (ent.isIntersecting) {
-      document.querySelector('.Whatsapp').classList.add('is-hidden');
-    } else {
-      document.querySelector('.Whatsapp').classList.remove('is-hidden');
-    }
-  })
-});
+if (typeof IntersectionObserver !== 'undefined') {
+  let whatsappButton = document.querySelector('.Whatsapp');
+  let observer = new IntersectionObserver((entries) => {
+    entries.forEach(ent => {
+      if (ent.isIntersecting) {
+        whatsappButton.classList.add('is-hidden');
+      } else {
+        whatsappButton.classList.remove('is-hidden');
+      }
+    })
+  });
 
-observer.observe(document.querySelector('.Contact'));
+  observer.observe(document.querySelector('.Contact'));
+}
 
 // Video
 // --------------------------------------------------------------
-let play = document.querySelector(".js-play");
-let close = document.querySelector(".js-close");
-let video = document.querySelector(".js-video");
-let videoActual = document.querySelector("video");
+let cl = cloudinary.Cloudinary.new({cloud_name: 'dmib180cu'});
+let play = document.querySelector('.js-play');
+let close = document.querySelector('.js-close');
+let video = document.querySelector('.js-video');
+let videoActual = document.querySelector('video');
 
-window.addEventListener("scroll", onScrollFadeOut);
+window.addEventListener('scroll', onScrollFadeOut);
 
-play.addEventListener("click", e => {
+play.addEventListener('click', e => {
   e.preventDefault();
   e.stopImmediatePropagation();
+  if (e.target.closest('.js-close')) {
+    return;
+  }
   setFullVideo();
-  video.classList.add("Video");
-  video.classList.remove("Hero");
-  ga("send", "event", "Video", "play");
-  window.removeEventListener("scroll", onScrollFadeOut);
-  window.addEventListener("scroll", onScroll);
+  ga('send', 'event', 'Video', 'play');
+  window.removeEventListener('scroll', onScrollFadeOut);
+  window.addEventListener('scroll', onScrollSmall);
 });
-close.addEventListener("click", e => {
+close.addEventListener('click', e => {
   closeVideo();
 });
 
@@ -105,53 +110,54 @@ function onScrollFadeOut(e) {
   videoActual.style.opacity = 1 - window.scrollY / 2000;
 }
 
-function onScroll(e) {
+function onScrollSmall(e) {
   if(window.innerWidth > 768) {
-    setScrollVideo();
-    if (window.scrollY === 0 && !video.classList.contains("is-hidden")) {
-      video.classList.add("is-snap");
-      setTimeout(() => {
-        video.classList.remove("is-snap");
-      }, 500);
+    setSmallVideo();
+    if (window.scrollY === 0) {
+      video.classList.add('is-snap');
       setFullVideo();
+      setTimeout(() => {
+        video.classList.remove('is-snap');
+      }, 500);
     }
   }
 }
 function setFullVideo() {
-  video.classList.add("is-full");
-  video.classList.remove("is-hidden");
-  video.classList.remove("is-scroll");
+  video.classList.remove('Hero');
+  video.classList.add('Video');
+  video.classList.add('is-full');
+  video.classList.remove('is-small');
   videoActual.muted = false;
   videoActual.controls = true;
 }
+
+function setSmallVideo() {
+  video.classList.remove('is-full');
+  video.classList.add('is-small');
+}
+
 function closeVideo() {
   videoActual.muted = true;
   videoActual.controls = false;
-  video.classList.remove("Video");
-  video.classList.add("Hero");
-  setTimeout(() => {
-    video.classList.remove("is-full");
-    video.classList.remove("is-scroll");
-    window.removeEventListener("scroll", onScroll);
-    window.addEventListener("scroll", onScrollFadeOut);
-  }, 500);
-}
-function setScrollVideo() {
-  video.classList.add("is-scroll");
-  video.classList.remove("is-full");
+  video.classList.remove('Video');
+  video.classList.add('Hero');
+  video.classList.remove('is-full');
+  video.classList.remove('is-small');
+  window.removeEventListener('scroll', onScrollSmall);
+  window.addEventListener('scroll', onScrollFadeOut);
 }
 
 // Scroll
 // --------------------------------------------------------------
-let navList = document.querySelector(".MainNav-list");
-let navToggle = document.querySelector(".MainNav-toggle");
-let scrollToLinks = document.querySelectorAll(".js-scrollTo");
+let navList = document.querySelector('.MainNav-list');
+let navToggle = document.querySelector('.MainNav-toggle');
+let scrollToLinks = document.querySelectorAll('.js-scrollTo');
 for (let scrollToLink of scrollToLinks) {
-  scrollToLink.addEventListener("click", e => {
+  scrollToLink.addEventListener('click', e => {
     e.preventDefault();
-    navList.classList.remove("isOpen");
-    let scrollTo = e.currentTarget.getAttribute("href");
-    let selector = `[name=${scrollTo.replace("#", "")}]`;
+    navList.classList.remove('is-open');
+    let scrollTo = e.currentTarget.getAttribute('href');
+    let selector = `[name=${scrollTo.replace('#', '')}]`;
     let target = document.querySelector(selector);
     scrollToTarget(target).then(() => {
       requestAnimationFrame(() => {
@@ -161,44 +167,44 @@ for (let scrollToLink of scrollToLinks) {
   });
 }
 //Mobile-Menu
-document.addEventListener("click", function(event) {
+document.addEventListener('click', function(event) {
   if (
-    event.target.closest(".MainNav-list") ||
-    event.target.closest(".MainNav-toggle") ||
-    event.target.closest(".MainNav")
+    event.target.closest('.MainNav-list') ||
+    event.target.closest('.MainNav-toggle') ||
+    event.target.closest('.MainNav')
   )
     return;
-  if (navList.classList.contains("isOpen")) {
-    navList.classList.remove("isOpen");
+  if (navList.classList.contains('is-open')) {
+    navList.classList.remove('is-open');
   }
-});
-navToggle.addEventListener("click", e => {
+}, true);
+navToggle.addEventListener('click', e => {
   e.preventDefault();
-  if (navList.classList.contains("isOpen")) {
-    navList.classList.remove("isOpen");
+  if (navList.classList.contains('is-open')) {
+    navList.classList.remove('is-open');
   } else {
-    navList.classList.add("isOpen");
+    navList.classList.add('is-open');
   }
 });
 
 function scrollToTarget(target) {
-  return Velocity(target, "scroll", {
+  return Velocity(target, 'scroll', {
     duration: 600,
     delay: 0,
-    easing: "ease"
+    easing: 'ease'
   });
 }
 
 // Dancers
 // --------------------------------------------------------------
-forEach(document.querySelectorAll(".js-more"), more => {
+forEach(document.querySelectorAll('.js-more'), more => {
   hideEl(more);
-  let moreTrigger = document.createElement("a");
-  moreTrigger.classList.add("Dancers-more-trigger");
-  moreTrigger.href = "";
-  moreTrigger.textContent = more.getAttribute("aria-label");
-  more.insertAdjacentElement("afterend", moreTrigger);
-  moreTrigger.addEventListener("click", e => {
+  let moreTrigger = document.createElement('a');
+  moreTrigger.classList.add('Dancers-more-trigger');
+  moreTrigger.href = '';
+  moreTrigger.textContent = more.getAttribute('aria-label');
+  more.insertAdjacentElement('afterend', moreTrigger);
+  moreTrigger.addEventListener('click', e => {
     e.preventDefault();
     showEl(more);
     hideEl(moreTrigger);
@@ -210,37 +216,37 @@ function forEach(arrayLike, fn) {
 }
 
 function hideEl(el) {
-  el.setAttribute("hidden", "hidden");
+  el.setAttribute('hidden', 'hidden');
 }
 
 function showEl(el) {
-  el.removeAttribute("hidden");
+  el.removeAttribute('hidden');
 }
 
 // Mix
 // --------------------------------------------------------------
-forEach(document.querySelectorAll(".js-lazy-mix"), loadLazyMix);
+forEach(document.querySelectorAll('.js-lazy-mix'), loadLazyMix);
 
 function loadLazyMix(el) {
   let style = window.getComputedStyle(el.closest('.Music-mix'));
   if (style.getPropertyValue('display') !== 'none') {
-    el.innerHTML = `<iframe src="${el.dataset.src}" height="${
+    el.innerHTML = `<iframe src='${el.dataset.src}' height='${
       el.dataset.height
-    }" frameborder="0"></iframe>`;
+    }' frameborder='0'></iframe>`;
   }
 }
 
 // Gallery
 // --------------------------------------------------------------
-forEach(document.querySelectorAll(".js-lazy-image"), loadLazyImage);
-document.addEventListener("click", hide);
-document.addEventListener("keyup", e => {
-  if (e.key === "Escape") hide(e);
-  if (isImageOpen() && e.key.startsWith("Arrow")) {
-    let num = document.location.hash.replace("#img-", "");
-    let func = e.key.endsWith("Right")
+forEach(document.querySelectorAll('.js-lazy-image'), loadLazyImage);
+document.addEventListener('click', hide);
+document.addEventListener('keyup', e => {
+  if (e.key === 'Escape') hide(e);
+  if (isImageOpen() && e.key.startsWith('Arrow')) {
+    let num = document.location.hash.replace('#img-', '');
+    let func = e.key.endsWith('Right')
       ? add
-      : e.key.endsWith("Left")
+      : e.key.endsWith('Left')
       ? substract
       : noop;
     document.location.hash = document.location.hash.replace(
@@ -252,13 +258,13 @@ document.addEventListener("keyup", e => {
 
 function loadLazyImage(el, i) {
   let src = el.dataset.src;
-  let img = document.createElement("img");
-  img.addEventListener("load", e => {
+  let img = document.createElement('img');
+  img.addEventListener('load', e => {
     requestAnimationFrame(() => {
-      el.insertAdjacentElement("afterend", img);
+      el.insertAdjacentElement('afterend', img);
       el.parentNode.removeChild(el);
-      img.removeAttribute("width");
-      img.removeAttribute("height");
+      img.removeAttribute('width');
+      img.removeAttribute('height');
     });
   });
   img.src = src;
@@ -269,7 +275,7 @@ function loadLazyImage(el, i) {
 
 function hide(e) {
   if (isImageOpen() && isClickedOutside(e)) {
-    requestAnimationFrame(() => (document.location.hash = "#id-gallery"));
+    requestAnimationFrame(() => (document.location.hash = '#id-gallery'));
   }
 }
 
@@ -281,7 +287,7 @@ function substract(a, b) {
   return a - b;
 }
 function isImageOpen() {
-  return document.location.hash.startsWith("#img-");
+  return document.location.hash.startsWith('#img-');
 }
 function isClickedOutside(e) {
   return !isImage(e.target) && !isImageControl(e.target);
@@ -291,11 +297,11 @@ function isClickedImage(e) {
 }
 function isImageControl(element) {
   return (
-    element.closest("svg") !== null ||
-    element.classList.contains("Gallery-next") ||
-    element.classList.contains("Gallery-prev")
+    element.closest('svg') !== null ||
+    element.classList.contains('Gallery-next') ||
+    element.classList.contains('Gallery-prev')
   );
 }
 function isImage(element) {
-  return element.tagName === "IMG" && element.closest("[id^=img-]") !== null;
+  return element.tagName === 'IMG' && element.closest('[id^=img-]') !== null;
 }

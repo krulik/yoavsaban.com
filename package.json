@@ -12,6 +12,7 @@
   "scripts": {
     "gh-deploy:first": "chmod +x $npm_package_config_deploy_script && bash $npm_package_config_deploy_script -s",
     "gh-deploy": "bash $npm_package_config_deploy_script",
+    "now": "npm run build && cd dist && npx now && cd ../",
     "html": "cp $npm_package_config_src/index.html $npm_package_config_dist",
     "video": "cp -R $npm_package_config_src/video $npm_package_config_dist",
     "img": "cp -R $npm_package_config_src/images $npm_package_config_dist",
@@ -45,6 +46,7 @@
     "critical": "^0.8.2",
     "lighthouse": "^1.5.1",
     "request": "^2.81.0",
-    "node-sass": "^4.12.0"
+    "node-sass": "^4.12.0",
+    "cloudinary": "^1.14.0"
   }
 }

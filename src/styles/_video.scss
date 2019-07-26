@@ -2,17 +2,6 @@
   cursor: pointer;
 }
 
-.Video.is-hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.Video.is-full {
-	top: 0; left: 0;
-	width: 100vw;
-	height: 100vh;
-}
-
 .Video video {
   width: 100%;
   height: 100%;
@@ -25,7 +14,7 @@
   transition: fill .5s ease;
   transform: none;
   cursor: pointer;
-  .Video.is-scroll & {
+  .Video.is-small & {
     top: $space/2; right: $space/2;
     transform: scale(0.7);
   }
@@ -38,8 +27,6 @@
 	position: fixed;
 	top: 0; left: 0;
   background-color: rgba(0,0,0,0.5);
-}
-.Video {
   transition: all .5s ease;
   transform-origin: 0 0;
   opacity: 1;
@@ -49,9 +36,20 @@
   transition: none;
 }
 
-.Video.is-scroll {
+.Video.is-small {
 	right: auto;
 	left: 0;
 	width: 40vw;
 	height: auto;
 }
+
+.Video.is-full {
+	top: 0; left: 0;
+	width: 100vw;
+	height: 100vh;
+}
+
+// .Video.is-hidden {
+//   opacity: 0;
+//   pointer-events: none;
+// }
