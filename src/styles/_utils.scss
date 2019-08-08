@@ -29,6 +29,13 @@
   }
 }
 
+.u-enlargeLg--X1_2 {
+  @media (min-width: $bp-md) {
+    transform: scale(1.2);
+    transform-origin: center center;
+  }
+}
+
 .u-hideSm {
   @media (max-width: $bp-md) {
     display: none !important;
