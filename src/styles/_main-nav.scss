@@ -35,7 +35,7 @@ ul.MainNav-list {
   transition: all 0.3s ease;
 }
 
-.MainNav-list.isOpen{
+.MainNav-list.is-open{
   transform: scale(1);
   transition: transform .3s ease;
 }

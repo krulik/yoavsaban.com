@@ -13,7 +13,18 @@ body:before {
   position: relative;
 }
 
+
 .Hero {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+
+.Hero-bg {
   background-image: url(../images/hero.jpg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -21,7 +32,31 @@ body:before {
   width: 100%;
   height: 100%;
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.Hero video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .Hero video {
+    height: 300%;
+    top: -100%;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .Hero video {
+    width: 300%;
+    left: -100%;
+  }
 }
 
 .Hero-element {
@@ -34,9 +69,8 @@ body:before {
 
 .Hero-title {
   $h-element: 133px;
-
   font-size: 1.25rem;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 50%;
   transform: translate(-50%, -50%);

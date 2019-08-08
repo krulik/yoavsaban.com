@@ -1,3 +1,7 @@
-.MainNav { z-index: 1; }
+.MainNav { z-index: 2; }
 .Video { z-index: 2; }
 .Video-close { z-index: 1; }
+.Hero-element,
+.Hero-title {
+  z-index: 1;
+}

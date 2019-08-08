@@ -1,35 +1,10 @@
-.Video-play {
-  width: 200px;
-  height: 50px;
-  top: 50%;
-  margin-top: 75px;
-  color: white;
-  font-size: 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.js-play {
   cursor: pointer;
-  svg {
-    fill: white;
-  }
-  @media (min-width: $bp-md) {
-    margin-top: 125px;
-  }
-}
-button.Video-play {
-  border: none;
-  background-color: transparent;
 }
 
-.Video.is-hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.Video.is-full {
-	top: 0; left: 0;
-	width: 100vw;
-	height: 100vh;
+.Video video {
+  width: 100%;
+  height: 100%;
 }
 
 .Video-close {
@@ -39,7 +14,7 @@ button.Video-play {
   transition: fill .5s ease;
   transform: none;
   cursor: pointer;
-  .Video.is-scroll & {
+  .Video.is-small & {
     top: $space/2; right: $space/2;
     transform: scale(0.7);
   }
@@ -51,26 +26,24 @@ button.Video-play {
 .Video {
 	position: fixed;
 	top: 0; left: 0;
-	background-color: rgba(0,0,0,0.5);
-}
-.Video {
-  transition: all .5s ease;
+  background-color: rgba(0,0,0,0.5);
   transform-origin: 0 0;
-  opacity: 1;
+  transition: all .5s ease;
 }
 
-.Video.is-snap {
-  transition: none;
+.Video.is-full {
+	top: 0; left: 0;
+	width: 100vw;
+	height: 100vh;
 }
 
-.Video.is-scroll {
+.Video.is-small {
 	right: auto;
 	left: 0;
 	width: 40vw;
 	height: auto;
 }
 
-.Video-actual {
-  width: 100%;
-  height: 100%;
+.Video.is-snap {
+  transition: none;
 }
