@@ -46,7 +46,7 @@
     "critical": "^0.8.2",
     "lighthouse": "^1.5.1",
     "request": "^2.81.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "cloudinary": "^1.14.0"
   }
 }
