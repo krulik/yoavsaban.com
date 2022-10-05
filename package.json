@@ -43,7 +43,7 @@
   "homepage": "https://github.com/krulik/yoavsaban.com#readme",
   "devDependencies": {
     "browser-sync": "^2.18.8",
-    "critical": "^0.8.2",
+    "critical": "^5.0.3",
     "lighthouse": "^1.5.1",
     "request": "^2.81.0",
     "node-sass": "^4.12.0",
