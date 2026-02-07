@@ -1,8 +1,8 @@
 /*!
- * React Swipe 2.2.11
+ * React Swipe 2.3.1
  *
  * Felix Liu
- * Copyright 2016 - 2017, MIT License
+ * Copyright 2016 - 2020, MIT License
  *
 */
 
@@ -21,34 +21,42 @@ const noop = function noop() {};
 class Swipe extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
-
-    this.needsReSetup = false;
+    this.state = {
+      needsReSetup: false,
+      prevChildrenLength: 0
+    };
     this._isMount = false;
     this.instance = null;
   }
 
   // Check children length change and prepare for re-setup
-  componentWillReceiveProps(nextProps) {
-    let nextChildrenLength = (nextProps.children || []).length;
-    let prevChildrenLength = (this.props.children || []).length;
-    if (nextChildrenLength !== prevChildrenLength) {
-      this.needsReSetup = true;
+  static getDerivedStateFromProps(props, state) {
+    const childrenLength = (props.children || []).length;
+    const prevChildrenLength = state.prevChildrenLength || 0;
+    if (childrenLength !== prevChildrenLength) {
+      return {
+        prevChildrenLength: childrenLength,
+        needsReSetup: true
+      };
     }
+    return null;
   }
 
   // Perform re-setup when necessary
   componentDidUpdate() {
-    if (this._isMount && this.needsReSetup) {
-      this.setupSwipe();
-      this.needsReSetup = false;
+    const { needsReSetup = false } = this.state || {};
+    if (this._isMount && needsReSetup) {
+      // delay resetup
+      setTimeout(() => this.setupSwipe(), 10);
+      this.setState({ needsReSetup: false });
     }
   }
 
   // Initialize swipe
   componentDidMount() {
     this._isMount = true;
-    this.setupSwipe();
+    // delay resetup
+    setTimeout(() => this.setupSwipe(), 10);
   }
 
   swipeOptions() {
@@ -61,8 +69,11 @@ class Swipe extends React.Component {
       autoRestart,
       disableScroll,
       stopPropagation,
+      ignore,
       callback,
-      transitionEnd
+      transitionEnd,
+      dragStart,
+      dragEnd
     } = this.props;
 
     return {
@@ -74,8 +85,11 @@ class Swipe extends React.Component {
       autoRestart,
       disableScroll,
       stopPropagation,
+      ignore,
       callback,
-      transitionEnd
+      transitionEnd,
+      dragStart,
+      dragEnd
     };
   }
 
@@ -197,8 +211,11 @@ Swipe.defaultProps = {
   autoRestart: false,
   disableScroll: false,
   stopPropagation: false,
+  ignore: null,
   callback: noop,
-  transitionEnd: noop
+  transitionEnd: noop,
+  dragStart: noop,
+  dragEnd: noop
 };
 
 Swipe.propTypes = {
@@ -212,8 +229,11 @@ Swipe.propTypes = {
   autoRestart: PropTypes.bool,
   disableScroll: PropTypes.bool,
   stopPropagation: PropTypes.bool,
+  ignore: PropTypes.string,
   callback: PropTypes.func,
-  transitionEnd: PropTypes.func
+  transitionEnd: PropTypes.func,
+  dragStart: PropTypes.func,
+  dragEnd: PropTypes.func
 };
 
 function proxyMethods(...methods) {

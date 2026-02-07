@@ -1,5 +1,5 @@
 /*!
- * Swipe 2.2.11
+ * Swipe 2.3.1
  *
  * Brad Birdsall
  * Copyright 2013, MIT License
@@ -9,6 +9,7 @@
 // if the module has no dependencies, the above pattern can be simplified to
 // eslint-disable-next-line no-extra-semi
 ;(function (root, factory) {
+  root = root || {};
   // eslint-disable-next-line no-undef
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
@@ -84,9 +85,50 @@
       return throttledFn;
     };
 
+    // check whether event is cancelable
+    var isCancelable = function (event) {
+      if (!event) return false;
+      return typeof event.cancelable !== 'boolean' || event.cancelable;
+    };
+
+    // polyfill for browsers that do not support Element.matches()
+    if (!Element.prototype.matches) {
+      Element.prototype.matches =
+        Element.prototype.matchesSelector ||
+        Element.prototype.mozMatchesSelector ||
+        Element.prototype.msMatchesSelector ||
+        Element.prototype.oMatchesSelector ||
+        Element.prototype.webkitMatchesSelector ||
+        function (s) {
+          var matches = (this.document || this.ownerDocument).querySelectorAll(s),
+            i = matches.length;
+          while (--i >= 0 && matches.item(i) !== this)
+            ;
+          return i > -1;
+        };
+    }
+
     // check browser capabilities
     var browser = {
       addEventListener: !!root.addEventListener,
+      passiveEvents: (function () {
+        // Test via a getter in the options object to see if the passive property is accessed
+        var supportsPassive = false;
+        try {
+          var opts = Object.defineProperty({}, 'passive', {
+            // eslint-disable-next-line getter-return
+            get: function () {
+              supportsPassive = true;
+            }
+          });
+          root.addEventListener('testEvent', null, opts);
+          root.removeEventListener('testEvent', null, opts);
+        }
+        catch (e) {
+          supportsPassive = false;
+        }
+        return supportsPassive;
+      })(),
       // eslint-disable-next-line no-undef
       touch: ('ontouchstart' in root) || root.DocumentTouch && _document instanceof DocumentTouch,
       transitions: (function(temp) {
@@ -129,7 +171,8 @@
     var events = {
 
       handleEvent: function(event) {
-        if (disabled) return;
+        // allow bypass 'resize' event
+        if (disabled && event.type !== 'resize') return;
 
         switch (event.type) {
           case 'mousedown':
@@ -157,10 +200,18 @@
 
         if (isMouseEvent(event)) {
           touches = event;
-          event.preventDefault(); // For desktop Safari drag
         } else {
           touches = event.touches[0];
         }
+
+        // check if the user is swiping on an element that the options say to ignore (for example, a scrolling area)
+        if (options.ignore && touches.target.matches(options.ignore)) {
+          return;
+        }
+
+        // For desktop Safari drag
+        // Fix #146
+        if (isMouseEvent(event)) event.preventDefault();
 
         // measure start values
         start = {
@@ -186,10 +237,10 @@
           element.addEventListener('mouseup', this, false);
           element.addEventListener('mouseleave', this, false);
         } else {
-          element.addEventListener('touchmove', this, false);
+          element.addEventListener('touchmove', this, browser.passiveEvents ? { passive: false } : false);
           element.addEventListener('touchend', this, false);
         }
-
+        runDragStart(getPos(), slides[index]);
       },
 
       move: function(event) {
@@ -203,7 +254,8 @@
             return;
           }
 
-          if (options.disableScroll) {
+          // we can disable scrolling unless it is already in progress
+          if (options.disableScroll && isCancelable(event)) {
             event.preventDefault();
           }
 
@@ -224,8 +276,11 @@
         // if user is not trying to scroll vertically
         if (!isScrolling) {
 
-          // prevent native scrolling
-          event.preventDefault();
+          // if it is not already scrolling
+          if (isCancelable(event)) {
+            // prevent native scrolling
+            event.preventDefault();
+          }
 
           // stop slideshow
           stop();
@@ -244,9 +299,9 @@
               ( (!index && delta.x > 0 ||             // if first slide and sliding left
                  index === slides.length - 1 &&        // or if last slide and sliding right
                  delta.x < 0                           // and if sliding at all
-                ) ?
-               ( Math.abs(delta.x) / width + 1 )      // determine resistance level
-               : 1 );                                 // no resistance if false
+              ) ?
+                ( Math.abs(delta.x) / width + 1 )      // determine resistance level
+                : 1 );                                 // no resistance if false
 
             // translate 1:1
             translate(index-1, delta.x + slidePos[index-1], 0);
@@ -341,10 +396,10 @@
           element.removeEventListener('mouseup', events, false);
           element.removeEventListener('mouseleave', events, false);
         } else {
-          element.removeEventListener('touchmove', events, false);
+          element.removeEventListener('touchmove', events, browser.passiveEvents ? { passive: false } : false);
           element.removeEventListener('touchend', events, false);
         }
-
+        runDragEnd(getPos(), slides[index]);
       },
 
       transitionEnd: function(event) {
@@ -412,7 +467,7 @@
     function detachEvents() {
       if (browser.addEventListener) {
         // remove current event listeners
-        element.removeEventListener('touchstart', events, false);
+        element.removeEventListener('touchstart', events, browser.passiveEvents ? { passive: true } : false);
         element.removeEventListener('mousedown', events, false);
         element.removeEventListener('webkitTransitionEnd', events, false);
         element.removeEventListener('msTransitionEnd', events, false);
@@ -431,7 +486,7 @@
 
         // set touchstart event on element
         if (browser.touch) {
-          element.addEventListener('touchstart', events, false);
+          element.addEventListener('touchstart', events, browser.passiveEvents ? { passive: true } : false);
         }
 
         if (options.draggable) {
@@ -571,6 +626,18 @@
     function runTransitionEnd(pos, index) {
       if (options.transitionEnd) {
         options.transitionEnd(pos, index);
+      }
+    }
+
+    function runDragStart(pos, index) {
+      if (options.dragStart) {
+        options.dragStart(pos, index);
+      }
+    }
+
+    function runDragEnd(pos, index) {
+      if (options.dragEnd) {
+        options.dragEnd(pos, index);
       }
     }
 

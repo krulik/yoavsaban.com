@@ -1,6 +1,6 @@
 {
   "name": "swipe-js",
-  "version": "2.2.13",
+  "version": "2.3.1",
   "main": [
     "./swipe.js"
   ],
@@ -29,11 +29,11 @@
     "slider",
     "touch"
   ],
-  "_release": "2.2.13",
+  "_release": "2.3.1",
   "_resolution": {
     "type": "version",
-    "tag": "2.2.13",
-    "commit": "0d3c0d53497ddb64233d4655ddf1e5174587ebab"
+    "tag": "2.3.1",
+    "commit": "64a7625265b664585aba3b1ae998a4764247c48f"
   },
   "_source": "https://github.com/lyfeyaj/swipe.git",
   "_target": "^2.2.4",

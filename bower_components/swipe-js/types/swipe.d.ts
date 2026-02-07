@@ -1,4 +1,4 @@
-// Type definitions for Swipe v2.2.11
+// Type definitions for Swipe v2.2.18
 // Project: https://github.com/lyfeyaj/swipe
 // Definitions by: Felix Liu <https://github.com/lyfeyaj>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
@@ -12,6 +12,7 @@ interface SwipeOptions {
     autoRestart?: boolean;
     disableScroll?: boolean;
     stopPropagation?: boolean;
+    ignore?: string;
     callback?: (index: number, elem: HTMLElement, dir: number) => void;
     transitionEnd?: (index: number, elem: HTMLElement) => void;
 }
@@ -30,3 +31,5 @@ declare class Swipe {
     disable(): void;
     enable(): void;
 }
+
+export = Swipe;

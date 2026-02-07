@@ -76,24 +76,91 @@
 
 // Video
 // --------------------------------------------------------------
-let cl = cloudinary.Cloudinary.new({cloud_name: 'dmib180cu'});
-const CLIP_URL = 'https://res.cloudinary.com/dmib180cu/video/upload/c_scale,vc_auto,w_1024/v1564144711/clip_m50wec.mp4';
+const CLIP_URL_DESKTOP = 'https://res.cloudinary.com/dmib180cu/video/upload/c_scale,vc_auto,w_1024/v1564144711/clip_m50wec.mp4';
+const CLIP_URL_MOBILE = 'https://res.cloudinary.com/dmib180cu/video/upload/c_scale,vc_auto,w_640/v1564144711/clip_m50wec.mp4';
 let play = document.querySelector('.js-play');
 let close = document.querySelector('.js-close');
 let video = document.querySelector('.js-video');
 let videoActual = document.querySelector('video');
+let isOnMobile = isMobile();
 
-if (!isMobile()) {
-  setupVideo();
+// Check if we should load video based on connection speed
+if (shouldLoadVideo()) {
+  setupVideo(isOnMobile);
+} else {
+  showFallbackLink();
 }
 
-function setupVideo() {
-  videoActual.src = CLIP_URL;
+function shouldLoadVideo() {
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+
+  if (!connection) {
+    return true; // API not available, try loading
+  }
+
+  // Respect data saver mode
+  if (connection.saveData) {
+    return false;
+  }
+
+  // Skip on 3G or slower
+  const slowTypes = ['slow-2g', '2g', '3g'];
+  if (slowTypes.includes(connection.effectiveType)) {
+    return false;
+  }
+
+  return true; // 4G or better
+}
+
+function setupVideo(mobile) {
+  const timeoutMs = mobile ? 8000 : 12000; // 8s mobile, 12s desktop
+  let loadTimeout;
+
+  videoActual.src = mobile ? CLIP_URL_MOBILE : CLIP_URL_DESKTOP;
+
+  // Add mobile-specific attributes
+  if (mobile) {
+    videoActual.setAttribute('playsinline', '');
+    videoActual.setAttribute('preload', 'metadata');
+  }
+
+  // Set timeout to abort if loading takes too long
+  loadTimeout = setTimeout(() => {
+    videoActual.src = ''; // abort loading
+    videoActual.load();
+    showFallbackLink();
+  }, timeoutMs);
+
   videoActual.addEventListener('canplaythrough', e => {
+    clearTimeout(loadTimeout);
     videoActual.removeAttribute('hidden');
-    window.addEventListener('scroll', onScrollFadeOut);
+
+    // Hide video link only when video loads successfully
+    const videoLink = document.querySelector('.js-video-link');
+    if (videoLink) {
+      videoLink.style.display = 'none';
+    }
+
+    // Only add scroll effects on desktop
+    if (!mobile) {
+      window.addEventListener('scroll', onScrollFadeOut);
+    }
+
     play.addEventListener('click', onVideoOpen);
     close.addEventListener('click', onVideoClose);
+  }, { once: true });
+}
+
+function showFallbackLink() {
+  // Link is already visible by default, nothing to do here
+
+  // Make the video hero area clickable as backup
+  play.classList.remove('js-play');
+  play.style.cursor = 'pointer';
+  play.addEventListener('click', e => {
+    e.preventDefault();
+    window.open(isOnMobile ? CLIP_URL_MOBILE : CLIP_URL_DESKTOP, '_blank');
+    ga('send', 'event', 'Video', 'fallback-link');
   });
 }
 
@@ -105,8 +172,12 @@ function onVideoOpen(e) {
   }
   setFullVideo();
   ga('send', 'event', 'Video', 'play');
-  window.removeEventListener('scroll', onScrollFadeOut);
-  window.addEventListener('scroll', onScrollSmall);
+
+  // Only add scroll-to-small behavior on desktop
+  if (!isOnMobile) {
+    window.removeEventListener('scroll', onScrollFadeOut);
+    window.addEventListener('scroll', onScrollSmall);
+  }
 }
 
 function onScrollFadeOut(e) {
@@ -159,8 +230,12 @@ function onVideoClose(e) {
   video.classList.add('Hero');
   video.classList.remove('is-full');
   video.classList.remove('is-small');
-  window.removeEventListener('scroll', onScrollSmall);
-  window.addEventListener('scroll', onScrollFadeOut);
+
+  // Only restore scroll effects on desktop
+  if (!isOnMobile) {
+    window.removeEventListener('scroll', onScrollSmall);
+    window.addEventListener('scroll', onScrollFadeOut);
+  }
 }
 
 // Scroll
@@ -346,5 +421,15 @@ function isImage(element) {
 }
 
 function isMobile() {
-  return window.innerWidth < 800;
+  const hasTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+  // Desktop (no touch) = false (use desktop video)
+  if (!hasTouch) return false;
+
+  // Touch device: distinguish phone from tablet
+  const maxDimension = Math.max(window.innerWidth, window.innerHeight);
+
+  // Phones: < 1000px in longest dimension
+  // iPads/Tablets: 1024px+ in longest dimension
+  return maxDimension < 1000;
 }
